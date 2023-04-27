@@ -3,9 +3,10 @@
 \docType{data}
 \name{cepii_gravity}
 \alias{cepii_gravity}
-\title{The Gravity dataset}
+\title{CEPII Gravity}
 \format{
-A data frame with 4,428,288 rows and 79 columns:\tabular{ll}{
+A data frame with 4,428,288 rows and 79 columns for the period
+1948-2019:\tabular{ll}{
    variable \tab description \cr
    year \tab Year \cr
    iso3_o \tab Origin ISO3 alphabetic \cr

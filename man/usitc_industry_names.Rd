@@ -3,20 +3,18 @@
 \docType{data}
 \name{usitc_industry_names}
 \alias{usitc_industry_names}
-\title{Industry names: Auxiliary table}
+\title{USITC-Derived Industry Names}
 \format{
-A data frame with 170 rows and 2 columns:
-|Variable name         |Variable description                                                                                                |
-|industry_id           |ITPD industry code                                                                                                  |
-|industry_descr        |ITPD industry description                                                                                           |
+A data frame with 170 rows and 2 columns:\tabular{ll}{
+   Variable name \tab Variable description \cr
+   industry_id \tab ITPD industry code \cr
+   industry_descr \tab ITPD industry description \cr
 }
-\source{
-Adapted from the original ITPD-E dataset
 }
 \description{
-Industry names: Auxiliary table
+USITC-Derived Industry Names
 }
 \author{
-Own creation, adapted from the original ITPD-E dataset
+Own creation, adapted from the original ITPD-E
 }
 \keyword{data}

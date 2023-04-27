@@ -3,20 +3,18 @@
 \docType{data}
 \name{usitc_sector_names}
 \alias{usitc_sector_names}
-\title{Sector names: Auxiliary table}
+\title{USTIC-Derived Sector Names}
 \format{
-A data frame with 4 rows and 2 columns:
-|Variable name         |Variable description                                                                                                |
-|broad_sector_id       |Broad sector code                                                                                                   |
-|broad_sector          |Broad sector                                                                                                        |
+A data frame with 4 rows and 2 columns:\tabular{ll}{
+   Variable name \tab Variable description \cr
+   broad_sector_id \tab Broad sector code \cr
+   broad_sector \tab Broad sector \cr
 }
-\source{
-Adapted from the original ITPD-E dataset
 }
 \description{
-Sector names: Auxiliary table
+USTIC-Derived Sector Names
 }
 \author{
-Own creation, adapted from the original ITPD-E dataset
+Own creation, adapted from the original ITPD-E
 }
 \keyword{data}

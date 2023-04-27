@@ -3,21 +3,19 @@
 \docType{data}
 \name{usitc_country_names}
 \alias{usitc_country_names}
-\title{Country names: Auxiliary table}
+\title{USITC-Derived Country Names}
 \format{
-A data frame with 267 rows and 3 columns:
-|Variable name         |Variable description                                                                                                |
-|country_iso3          |ISO 3-letter alpha code of the country                                                                              |
-|country_dynamic_code  |DGD's dynamic country code of the country                                                                           |
-|country_name          |Name of the country                                                                                                 |
+A data frame with 267 rows and 3 columns:\tabular{ll}{
+   Variable name \tab Variable description \cr
+   country_iso3 \tab ISO 3-letter alpha code of the country \cr
+   country_dynamic_code \tab DGD's dynamic country code of the country \cr
+   country_name \tab Name of the country \cr
 }
-\source{
-Adapted from the original ITPD-E dataset
 }
 \description{
-Country names: Auxiliary table
+USITC-Derived Country Names
 }
 \author{
-Own creation
+Own creation, adapted from the original DGD
 }
 \keyword{data}

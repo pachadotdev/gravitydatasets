@@ -2,7 +2,7 @@
 % Please edit documentation in R/download.R
 \name{gravitydatasets_download}
 \alias{gravitydatasets_download}
-\title{Download the USITC Gravity Database to your computer}
+\title{Download the Gravity Datasets to your computer}
 \usage{
 gravitydatasets_download(ver = NULL, local_file = NULL)
 }

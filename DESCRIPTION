@@ -23,7 +23,8 @@ Description: Aims at gathering in a single place a set of variables adapted
     Studies and International Information (CEPII), the International Trade 
     and Production Database for Estimation (ITPD-E) and the Dynamic Gravity 
     Database (DGD) from the US International Trade Commission (USITC), and
-    the Structural Gravity Database from the World Trade Organization (WTO).
+    the Structural Gravity Database (SGD) from the World Trade Organization 
+    (WTO).
 License: CC0
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

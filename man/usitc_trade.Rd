@@ -3,9 +3,10 @@
 \docType{data}
 \name{usitc_trade}
 \alias{usitc_trade}
-\title{Trade: Sector-level trade table}
+\title{USITC Trade at Sector-Level}
 \format{
-A data frame with 72,534,869 rows and 13 columns:\tabular{ll}{
+A data frame with 72,534,869 rows and 10 columns for the period
+1986-2020:\tabular{ll}{
    Variable name \tab Variable description \cr
    exporter_iso3 \tab ISO 3-letter alpha code of the exporter \cr
    exporter_dynamic_code \tab DGD's dynamic code of the exporter \cr
@@ -21,9 +22,6 @@ A data frame with 72,534,869 rows and 13 columns:\tabular{ll}{
    flag_mirror \tab Flag indicator, 1 if trade mirror value is used \cr
    flag_zero \tab Flag indicator: \code{p} if positive trade, \code{r} if the raw data contained zero and `u`` missing (unknown, assigned zero) \cr
 }
-}
-\source{
-The original data is available at https://www.usitc.gov/data/gravity/itpde.htm
 }
 \description{
 The data goes back to 1986 for Agriculture, and to 1988 for Mining & Energy and Manufacturing. Due to administrative data limitations, the data for Services is not available before to the year 2000.

@@ -3,20 +3,18 @@
 \docType{data}
 \name{usitc_region_names}
 \alias{usitc_region_names}
-\title{Region names: Auxiliary table}
+\title{USITC-Derived Region Names}
 \format{
-A data frame with 15 rows and 2 columns:
-|Variable name         |Variable description                                                                                                |
-|region_id             |Region code                                                                                                         |
-|region                |Region name                                                                                                         |
+A data frame with 15 rows and 2 columns:\tabular{ll}{
+   Variable name \tab Variable description \cr
+   region_id \tab Region code \cr
+   region \tab Region name \cr
 }
-\source{
-Adapted from the original DGD dataset
 }
 \description{
-Region names: Auxiliary table
+USITC-Derived Region Names
 }
 \author{
-Own creation, adapted from the original DGD dataset
+Own creation, adapted from the original DGD
 }
 \keyword{data}

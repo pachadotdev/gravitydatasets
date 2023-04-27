@@ -4,8 +4,8 @@
 #' @keywords internal
 "_PACKAGE"
 
-#' @title The Countries dataset: Static country-level information
-#' @name cepii_countries
+#' @title CEPII Country-Level Information
+#' @name cepii_country_names
 #' @docType data
 #' @author CEPII, adapted from the World Bank and other sources
 #' @format A data frame with 257 rows and 8 columns:
@@ -55,11 +55,12 @@
 #' @keywords data
 NULL
 
-#' @title The Gravity dataset
+#' @title CEPII Gravity
 #' @name cepii_gravity
 #' @docType data
 #' @author CEPII, adapted from the World Bank and other sources
-#' @format A data frame with 4,428,288 rows and 79 columns:
+#' @format A data frame with 4,428,288 rows and 79 columns for the period
+#' 1948-2019:
 #' |variable               |description                                                                      |
 #' |:----------------------|:--------------------------------------------------------------------------------|
 #' |year                   |Year                                                                             |
@@ -169,11 +170,12 @@ NULL
 #' @keywords data
 NULL
 
-#' @title Trade: Sector-level trade table
+#' @title USITC Trade at Sector-Level
 #' @name usitc_trade
 #' @docType data
 #' @author USITC, adapted from UN COMTRADE and other sources
-#' @format A data frame with 72,534,869 rows and 13 columns:
+#' @format A data frame with 72,534,869 rows and 10 columns for the period
+#' 1986-2020:
 #' |Variable name         |Variable description                                                                                                |
 #' |:---------------------|:-------------------------------------------------------------------------------------------------------------------|
 #' |exporter_iso3         |ISO 3-letter alpha code of the exporter                                                                             |
@@ -196,15 +198,14 @@ NULL
 #' \item{The `industry_descr` column is provided in the industry names table.}
 #' \item{The `broad_sector` column is provided in the sector names table and `broad_sector_id` was created for this version of the table.}
 #' }
-#' @source The original data is available at https://www.usitc.gov/data/gravity/itpde.htm
 #' @keywords data
 NULL
 
-#' @title Gravity: Macroeconomic, geographic and institutional variables table.
+#' @title USITC Gravity: Macroeconomic, geographic and institutional variables table.
 #' @name usitc_gravity
 #' @docType data
-#' @author USITC, adapted from WTO, UN COMTRADE, National Geographic and other sources
-#' @format A data frame with 1,973,285 rows and 67 columns:
+#' @author USITC, adapted from WTO, UN COMTRADE, National Geographic and other sources, with corrections made for the package
+#' @format A data frame with 1,940,681 rows and 67 columns for the period 1986-2020:
 #' |Variable name              |Variable description                                                                                 |
 #' |:--------------------------|:----------------------------------------------------------------------------------------------------|
 #' |year                       |Year of observation                                                                                  |
@@ -281,55 +282,78 @@ NULL
 #' \item{Is limited to ISO codes contained in the `trade` table.}
 #' \item{The `region_origin` and `region_destination` columns are provided in the `region names` table as `region_name` and can be joined by using the `region_id_` columns.}
 #' }
-#' @source The original data is available at https://www.usitc.gov/data/gravity/dgd.htm
 #' @keywords data
 NULL
 
-#' @title Country names: Auxiliary table
+#' @title USITC-Derived Country Names
 #' @name usitc_country_names
 #' @docType data
-#' @author Own creation
+#' @author Own creation, adapted from the original DGD
 #' @format A data frame with 267 rows and 3 columns:
-#' |Variable name         |Variable description                                                                                                |
-#' |country_iso3          |ISO 3-letter alpha code of the country                                                                              |
-#' |country_dynamic_code  |DGD's dynamic country code of the country                                                                           |
-#' |country_name          |Name of the country                                                                                                 |
-#' @source Adapted from the original ITPD-E dataset
+#' |Variable name         |Variable description                      |
+#' |:---------------------|:-----------------------------------------|
+#' |country_iso3          |ISO 3-letter alpha code of the country    |
+#' |country_dynamic_code  |DGD's dynamic country code of the country |
+#' |country_name          |Name of the country                       |
 #' @keywords data
 NULL
 
-#' @title Industry names: Auxiliary table
+#' @title USITC-Derived Industry Names
 #' @name usitc_industry_names
 #' @docType data
-#' @author Own creation, adapted from the original ITPD-E dataset
+#' @author Own creation, adapted from the original ITPD-E
 #' @format A data frame with 170 rows and 2 columns:
-#' |Variable name         |Variable description                                                                                                |
-#' |industry_id           |ITPD industry code                                                                                                  |
-#' |industry_descr        |ITPD industry description                                                                                           |
-#' @source Adapted from the original ITPD-E dataset
+#' |Variable name         |Variable description      |
+#' |:---------------------|:-------------------------|
+#' |industry_id           |ITPD industry code        |
+#' |industry_descr        |ITPD industry description |
 #' @keywords data
 NULL
 
-#' Sector names: Auxiliary table
+#' USTIC-Derived Sector Names
 #' @name usitc_sector_names
 #' @docType data
-#' @author Own creation, adapted from the original ITPD-E dataset
+#' @author Own creation, adapted from the original ITPD-E
 #' @format A data frame with 4 rows and 2 columns:
-#' |Variable name         |Variable description                                                                                                |
-#' |broad_sector_id       |Broad sector code                                                                                                   |
-#' |broad_sector          |Broad sector                                                                                                        |
-#' @source Adapted from the original ITPD-E dataset
+#' |Variable name         |Variable description |
+#' |:---------------------|:--------------------|
+#' |broad_sector_id       |Broad sector code    |
+#' |broad_sector          |Broad sector         |
 #' @keywords data
 NULL
 
-#' @title Region names: Auxiliary table
+#' @title USITC-Derived Region Names
 #' @name usitc_region_names
 #' @docType data
-#' @author Own creation, adapted from the original DGD dataset
+#' @author Own creation, adapted from the original DGD
 #' @format A data frame with 15 rows and 2 columns:
-#' |Variable name         |Variable description                                                                                                |
-#' |region_id             |Region code                                                                                                         |
-#' |region                |Region name                                                                                                         |
-#' @source Adapted from the original DGD dataset
+#' |Variable name         |Variable description |
+#' |:---------------------|:--------------------|
+#' |region_id             |Region code          |
+#' |region                |Region name          |
 #' @keywords data
 NULL
+
+#' @title WTO Country Names
+#' @name wto_country_names
+#' @docType data
+#' @author Own creation, adapted from the original SGD
+#' @format A data frame with 232 rows and 3 columns:
+#' |variable             |description                         |
+#' |:--------------------|:-----------------------------------|
+#' |country_iso3         |Country ISO3 alphabetic             |
+#' |country_name         |Country name                        |
+
+#' @title WTO Trade
+#' @name wto_trade
+#' @docType data
+#' @author WTO
+#' @format A data frame with 972,692 rows and 5 columns for the period
+#' 1980-2016:
+#' |variable             |description                         |
+#' |:--------------------|:-----------------------------------|
+#' |pair_id              |Exporter-Importer index             |
+#' |year                 |Year of observation                 |
+#' |exporter_iso3        |Exporter ISO3 alphabetic            |
+#' |importer_iso3        |Importer ISO3 alphabetic            |
+#' |trade                |Trade flows in current US dollars   |
