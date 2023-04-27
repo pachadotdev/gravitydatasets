@@ -1,0 +1,58 @@
+Package: gravitydatasets
+Title: Aims at gathering in a single place a set of variables adapted 
+    both from the Center for Prospective Studies and International 
+    Information (CEPII) and the US International Trade Commission (USITC) 
+    that could be useful to researchers or practitioners that use the
+    gravity model of trade. Each observation  corresponds to a combination of 
+    exporter-importer-year (i.e. origin-destination-year), for which we provide 
+    trade flows, as well as geographic, cultural, trade facilitation and 
+    macroeconomic variables. The tables provided here were reshaped under Cobb's
+    Normal Form, and in some cases contain corrections that we explain in the
+    GitHub repository. The specific sources are the Gravity database from CEPII,
+    the International Trade and Production Database for Estimation (ITPD-E) from
+    the USITC, and the Dynamic Gravity Database (DGD) also from the USITC.
+Version: 0.1
+Authors@R: 
+    c(
+     person("Mauricio", "Vargas Sepulveda",
+            email = "m.sepulveda@mail.utoronto.ca", role = c("aut", "cre"),
+    person("Victor", "Falkenheim", role = "ths")),
+     person(family = "Center for Prospective Studies and International 
+            Information(CEPII)",
+            role = "dtc"),
+     person(family = "United States International Trade Comission (USITC)",
+            role = "dtc")
+    )
+Description: Aims at gathering in a single place a set of variables adapted 
+    both from the Center for Prospective Studies and International 
+    Information (CEPII) and the US International Trade Commission (USITC) 
+    that could be useful to researchers or practitioners that use the
+    gravity model of trade. Each observation corresponds to a combination of 
+    exporter-importer-year (i.e. origin-destination-year and also
+    sector-industry), for which we provide trade flows, as well as geographic,
+    cultural, trade facilitation and macroeconomic variables. The tables 
+    provided here were reshaped under Cobb's Normal Form, and in some cases 
+    contain corrections that we explain in the GitHub repository. The specific 
+    sources are the Gravity database from CEPII, the International Trade and 
+    Production Database for Estimation (ITPD-E) from the USITC, and the Dynamic
+    Gravity Database (DGD) also from the USITC.
+License: CC0
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Depends: 
+    R (>= 2.10)
+URL: https://pacha.dev/gravitydatasets
+BugReports: https://github.com/pachadotdev/gravitydatasets/issues
+Imports: 
+    DBI,
+    duckdb,
+    httr,
+    purrr,
+    cli,
+    crayon,
+    rstudioapi,
+    tools,
+    archive
+Suggests: 
+    gravity

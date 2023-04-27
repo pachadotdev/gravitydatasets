@@ -1,0 +1,6 @@
+.Rproj.user
+*.csv
+*.dta
+*.tsv
+*.zip
+.Rhistory
