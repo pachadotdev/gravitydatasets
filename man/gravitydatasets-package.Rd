@@ -4,11 +4,11 @@
 \name{gravitydatasets-package}
 \alias{gravitydatasets}
 \alias{gravitydatasets-package}
-\title{gravitydatasets: Aims at gathering in a single place a set of variables adapted both from the Center for Prospective Studies and International Information (CEPII) and the US International Trade Commission (USITC) that could be useful to researchers or practitioners willing to understand the determinants of international trade. Each observation corresponds to a combination of exporter-importer-year (i.e. origin-destination-year), for which we provide trade flows, as well as geographic, cultural, trade facilitation and macroeconomic variables. The tables provided here were reshaped under Cobb's Normal Form, and in some cases contain corrections that we explain in the README. The specific sources are the Gravity database from CEPII and the International Trade and Production Database for Estimation (ITPD-E) and the Dynamic Gravity Database (DGD) from the USITC.}
+\title{gravitydatasets: Datasets for Structural Gravity Modeling}
 \description{
-Provides consistent data on international and domestic trade for 243 countries, 170 industries, and 17 years alongside variables for gravity estimation. The data sources are ITPD-E and DGD from the USITC, which use administrative data and intentionally does not include information estimated by statistical techniques, which makes the datasets suitable for gravity estimation.
+Aims at gathering in a single place a set of variables adapted that could be useful to researchers or practitioners that use the structural gravity model of trade. We provide trade flows, as well as geographic, cultural, trade facilitation and macroeconomic variables. The tables provided here were reshaped under Cobb's Normal Form, and in some cases contain corrections that we explain in the GitHub repository. The specific sources are the Gravity database from the Center for Prospective Studies and International Information (CEPII), the International Trade and Production Database for Estimation (ITPD-E) and the Dynamic Gravity Database (DGD) from the US International Trade Commission (USITC), and the Structural Gravity Database from the World Trade Organization (WTO).
 
-Provides consistent data on international and domestic trade for 243 countries, 170 industries, and 17 years alongside variables for gravity estimation. The data sources are ITPD-E and DGD from the USITC, which use administrative data and intentionally does not include information estimated by statistical techniques, which makes the datasets suitable for gravity estimation.
+Aims at gathering in a single place a set of variables adapted that could be useful to researchers or practitioners that use the structural gravity model of trade. We provide trade flows, as well as geographic, cultural, trade facilitation and macroeconomic variables. The tables provided here were reshaped under Cobb's Normal Form, and in some cases contain corrections that we explain in the GitHub repository. The specific sources are the Gravity database from the Center for Prospective Studies and International Information (CEPII), the International Trade and Production Database for Estimation (ITPD-E) and the Dynamic Gravity Database (DGD) from the US International Trade Commission (USITC), and the Structural Gravity Database from the World Trade Organization (WTO).
 }
 \seealso{
 Useful links:
@@ -30,6 +30,7 @@ Useful links:
 
 Other contributors:
 \itemize{
+  \item Victor Falkenheim [thesis advisor]
   \item  Center for Prospective Studies and International Information(CEPII) [data contributor]
   \item  United States International Trade Comission (USITC) [data contributor]
 }

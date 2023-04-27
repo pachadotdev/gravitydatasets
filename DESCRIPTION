@@ -5,7 +5,8 @@ Authors@R:
     c(
      person("Mauricio", "Vargas Sepulveda",
             email = "m.sepulveda@mail.utoronto.ca", role = c("aut", "cre"),
-    person("Victor", "Falkenheim", role = "ths")),
+            comment = c(ORCID = "0000-0003-1017-7574")),
+     person("Victor", "Falkenheim", role = "ths"),
      person(family = "Center for Prospective Studies and International 
             Information(CEPII)",
             role = "dtc"),
@@ -13,18 +14,16 @@ Authors@R:
             role = "dtc")
     )
 Description: Aims at gathering in a single place a set of variables adapted 
-    both from the Center for Prospective Studies and International 
-    Information (CEPII) and the US International Trade Commission (USITC) 
-    that could be useful to researchers or practitioners that use the structural
-    gravity model of trade. Each observation corresponds to a combination of 
-    exporter-importer-year (i.e. origin-destination-year and also
-    sector-industry), for which we provide trade flows, as well as geographic,
-    cultural, trade facilitation and macroeconomic variables. The tables 
-    provided here were reshaped under Cobb's Normal Form, and in some cases 
-    contain corrections that we explain in the GitHub repository. The specific 
-    sources are the Gravity database from CEPII, the International Trade and 
-    Production Database for Estimation (ITPD-E) from the USITC, and the Dynamic
-    Gravity Database (DGD) also from the USITC.
+    that could be useful to researchers or practitioners that use the 
+    structural gravity model of trade. We provide trade flows, as well as 
+    geographic, cultural, trade facilitation and macroeconomic variables. The
+    tables provided here were reshaped under Cobb's Normal Form, and in some 
+    cases contain corrections that we explain in the GitHub repository. The 
+    specific sources are the Gravity database from the Center for Prospective
+    Studies and International Information (CEPII), the International Trade 
+    and Production Database for Estimation (ITPD-E) and the Dynamic Gravity 
+    Database (DGD) from the US International Trade Commission (USITC), and
+    the Structural Gravity Database from the World Trade Organization (WTO).
 License: CC0
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

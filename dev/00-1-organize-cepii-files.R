@@ -41,17 +41,17 @@ finp <- list.files("dev/finp", pattern = "\\.dta", full.names = T)
 
 countries <- read_stata(finp[1]) %>%
   clean_names() %>%
-  mutate(iso3 = tolower(iso3)) %>%
+  # mutate(iso3 = tolower(iso3)) %>%
   mutate_if(is.character, function(x) ifelse(x == "", NA, x))
 
 unique(nchar(countries$iso3))
 
 gravity <- read_stata(finp[2]) %>%
   clean_names() %>%
-  mutate(
-    iso3_o = tolower(iso3_o),
-    iso3_d = tolower(iso3_d)
-  ) %>%
+  # mutate(
+  #   iso3_o = tolower(iso3_o),
+  #   iso3_d = tolower(iso3_d)
+  # ) %>%
   mutate_if(is.character, function(x) ifelse(x == "", NA, x))
 
 unique(nchar(gravity$iso3_o))

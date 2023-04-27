@@ -13,7 +13,7 @@ The goal of `gravitydatasets` is to provide access to the following datasets:
 
 Ready to be used in R (i.e. for gravity estimation with the [gravity](https://pacha.dev/gravity) package).
 
-This aims at gathering in a single place a set of variables adapted both from the Center for Prospective Studies and International Information (CEPII) and the US International Trade Commission (USITC) that could be useful to researchers or practitioners that use the gravity model of trade. Each observation corresponds to a combination of exporter-importer-year (i.e. origin-destination-year and also sector-industry), for which we provide trade flows, as well as geographic, cultural, trade facilitation and macroeconomic variables. The tables provided here were reshaped under Cobb's Normal Form, and in some cases contain corrections that we explain in the GitHub repository. The specific sources are the Gravity database from CEPII, the International Trade and Production Database for Estimation (ITPD-E) from the USITC, and the Dynamic Gravity Database (DGD) also from the USITC.
+Aims at gathering in a single place a set of variables adapted that could be useful to researchers or practitioners that use the structural gravity model of trade. We provide trade flows, as well as geographic, cultural, trade facilitation and macroeconomic variables. The tables provided here were reshaped under Cobb's Normal Form, and in some cases contain corrections that we explain in the GitHub repository. The specific sources are the Gravity database from the Center for Prospective Studies and International Information (CEPII), the International Trade and Production Database for Estimation (ITPD-E) and the Dynamic Gravity Database (DGD) from the US International Trade Commission (USITC), and the Structural Gravity Database from the World Trade Organization (WTO).
 
 `gravitydatasets` can be installed by running
 
@@ -30,6 +30,8 @@ Borchert, Ingo & Larch, Mario & Shikher, Serge & Yotov, Yoto, 2020. *The Interna
 
 Gurevich, Tamara & Herman, Peter, 2018. *The Dynamic Gravity Dataset: 1948-2016*. USITC Working Paper 2018-02-A.
 
+Larch, Mario & Monteiro, José-Antonio & Piermartini, Roberta & Yotov, Yoto, 2019. *On the Effects of GATT/WTO Membership on Trade: They are Positive and Large After All*. WTO Staff Working Papers ERSD-2019-09, World Trade Organization (WTO), Economic Research and Statistics Division.
+
 ## Differences with the original sources.
 
 All the codes to implement the changes are in the `dev/` folder.
@@ -38,7 +40,7 @@ All the codes to implement the changes are in the `dev/` folder.
 
 The key differences are:
 
-* Fixes inconsistent indexing in the legal origins columns in the `cepii_gravity` table to match with the `cepii_legal_origin` correctly.
+* Fixes inconsistent indexing in the legal origins columns in the `cepii_gravity` table to match with the `cepii_legal_origin` table correctly.
 * Includes explanations for the abbreviations (i.e., Customs Union (CU) instead of just CU for the RTA types)
 
 ### USITC
@@ -81,6 +83,10 @@ I corrected this by using the gravity table itself in two ways:
 * By obtaining a full join on a pairwise basis for all non-symmetrical variables (i.e., `colony_of_origin_ever`) and obtained the maximum for each pair.
 
 To check this I ran some queries to verify, for example, that the populations for CHL-ESP are around `c(20,40)` and not `c(40,40)` (i.e., Spain doubles the population of Chile), and that for the same pair `colony_of_origin_ever = 0` but for ESP-CHL `colony_of_origin_ever = 1`.
+
+### WTO
+
+No modification besides adding the full country names in a separate table from trade.
 
 ## Usage
 

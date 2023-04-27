@@ -1,4 +1,4 @@
-#' Download the USITC Gravity Database to your computer
+#' Download the Gravity Datasets to your computer
 #'
 #' This command downloads the entire database as a single zip file that is
 #' unzipped to create the local database. If you do not want to download the

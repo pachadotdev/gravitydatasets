@@ -381,6 +381,29 @@ create_schema <- function() {
   #   "ALTER TABLE usitc_trade ADD FOREIGN KEY (broad_sector_id) REFERENCES usitc_sector_names(broad_sector_id)"
   # )
 
+  # WTO ----
+
+  DBI::dbSendQuery(con, "DROP TABLE IF EXISTS wto_trade")
+
+  DBI::dbSendQuery(
+    con,
+    "CREATE TABLE wto_trade (
+    pair_id INTEGER,
+    year INTEGER,
+    exporter_iso3 CHAR(3),
+    importer_iso3 CHAR(3),
+    trade DOUBLE)"
+  )
+
+  DBI::dbSendQuery(con, "DROP TABLE IF EXISTS wto_country_names")
+
+  DBI::dbSendQuery(
+    con,
+    "CREATE TABLE wto_country_names (
+    country_iso3 CHAR(3),
+    country_name VARCHAR(255))"
+  )
+
   # disconnect ----
 
   DBI::dbDisconnect(con, shutdown = TRUE)

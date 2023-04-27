@@ -21,9 +21,9 @@ gravitydatasets_pane <- function() {
   observer <- getOption("connectionObserver")
   if (!is.null(observer) && interactive()) {
     observer$connectionOpened(
-      type = "USITC Gravity Database",
+      type = "Gravity Datasets",
       host = "gravitydatasets",
-      displayName = "USITC Gravity Database",
+      displayName = "Gravity Datasets",
       icon = system.file("img", "edit-sql.png", package = "gravitydatasets"),
       connectCode = "gravitydatasets::gravitydatasets_pane()",
       disconnect = gravitydatasets::gravitydatasets_disconnect,
@@ -71,6 +71,6 @@ gravitydatasets_pane <- function() {
 update_gravitydatasets_pane <- function() {
   observer <- getOption("connectionObserver")
   if (!is.null(observer)) {
-    observer$connectionUpdated("USITC Gravity Database", "gravitydatasets", "")
+    observer$connectionUpdated("Gravity Datasets", "gravitydatasets", "")
   }
 }
