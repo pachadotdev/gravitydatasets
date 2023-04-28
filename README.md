@@ -99,21 +99,21 @@ library(purrr)
 library(fixest)
 
 con <- gravitydatasets_connect()
-  
+
 # run one model per sector
 models <- map(
-  tbl(con, "sector_names") %>% pull(broad_sector_id),
+  tbl(con, "usitc_sector_names") %>% pull(broad_sector_id),
   function(s) {
     message(s)
     
     yrs <- seq(2005, 2015, by = 5)
     
-    d <- tbl(con, "trade") %>% 
+    d <- tbl(con, "usitc_trade") %>% 
       filter(year %in% yrs, broad_sector_id == s) %>% 
       group_by(year, exporter_iso3, importer_iso3, broad_sector_id) %>% 
       summarise(trade = sum(trade, na.rm = T)) %>% 
       inner_join(
-        tbl(con, "gravity") %>% 
+        tbl(con, "usitc_gravity") %>% 
           filter(year %in% yrs) %>% 
           select(iso3_o, iso3_d, contiguity, common_language, colony_ever, distance),
         by = c("exporter_iso3" = "iso3_o", "importer_iso3" = "iso3_d")
@@ -133,7 +133,7 @@ models <- map(
   }
 )
 
-usitc_disconnect()
+gravitydatasets_disconnect()
 ```
 
 ```r
@@ -141,44 +141,44 @@ print(models)
 
 [[1]]
 GLM estimation, family = quasipoisson, Dep. Var.: trade
-Observations: 246,359 
+Observations: 243,259 
 Fixed-effects: etfe: 666,  itfe: 685
 Standard-errors: Clustered (etfe) 
                  Estimate Std. Error   t value   Pr(>|t|)    
-contiguity      -1.107178   0.095210 -11.62882  < 2.2e-16 ***
-common_language  0.904003   0.093483   9.67025  < 2.2e-16 ***
-colony_ever     -0.574003   0.123660  -4.64179 4.1623e-06 ***
-log(distance)   -2.296888   0.049558 -46.34779  < 2.2e-16 ***
+contiguity      -1.100653   0.095092 -11.57462  < 2.2e-16 ***
+common_language  0.909522   0.093396   9.73833  < 2.2e-16 ***
+colony_ever     -0.580546   0.123115  -4.71548 2.9394e-06 ***
+log(distance)   -2.290567   0.049593 -46.18709  < 2.2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
                                            
-  Squared Cor.: 0.995066                   
+  Squared Cor.: 0.995063                   
 
 [[2]]
 GLM estimation, family = quasipoisson, Dep. Var.: trade
-Observations: 399,386 
+Observations: 392,413 
 Fixed-effects: etfe: 699,  itfe: 699
 Standard-errors: Clustered (etfe) 
                  Estimate Std. Error   t value   Pr(>|t|)    
-contiguity      -0.607615   0.066616  -9.12114  < 2.2e-16 ***
-common_language  1.018309   0.122366   8.32184 4.5501e-16 ***
-colony_ever     -0.349478   0.095461  -3.66094 2.7027e-04 ***
-log(distance)   -1.231589   0.079559 -15.48011  < 2.2e-16 ***
+contiguity      -0.607763   0.066653  -9.11825  < 2.2e-16 ***
+common_language  1.017510   0.122499   8.30624 5.1286e-16 ***
+colony_ever     -0.349214   0.095491  -3.65703 2.7435e-04 ***
+log(distance)   -1.232183   0.079635 -15.47282  < 2.2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
                                            
-  Squared Cor.: 0.993537                   
+  Squared Cor.: 0.993544                   
 
 [[3]]
 GLM estimation, family = quasipoisson, Dep. Var.: trade
-Observations: 184,626 
+Observations: 183,063 
 Fixed-effects: etfe: 658,  itfe: 682
 Standard-errors: Clustered (etfe) 
                  Estimate Std. Error   t value  Pr(>|t|)    
-contiguity      -1.288373   0.104177 -12.36711 < 2.2e-16 ***
-common_language  1.346375   0.132477  10.16305 < 2.2e-16 ***
-colony_ever     -0.288694   0.222472  -1.29766   0.19486    
-log(distance)   -2.298326   0.074100 -31.01657 < 2.2e-16 ***
+contiguity      -1.288772   0.104207 -12.36742 < 2.2e-16 ***
+common_language  1.346403   0.132482  10.16290 < 2.2e-16 ***
+colony_ever     -0.288555   0.222484  -1.29697    0.1951    
+log(distance)   -2.298211   0.074100 -31.01505 < 2.2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
                                            
@@ -186,14 +186,14 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 [[4]]
 GLM estimation, family = quasipoisson, Dep. Var.: trade
-Observations: 46,471 
+Observations: 46,359 
 Fixed-effects: etfe: 578,  itfe: 579
 Standard-errors: Clustered (etfe) 
                  Estimate Std. Error    t value  Pr(>|t|)    
-contiguity      -2.671951   0.183676 -14.547108 < 2.2e-16 ***
-common_language  1.612853   0.127480  12.651800 < 2.2e-16 ***
-colony_ever      0.139065   0.170706   0.814645   0.41561    
-log(distance)   -2.267023   0.081150 -27.936349 < 2.2e-16 ***
+contiguity      -2.671951   0.183679 -14.546876 < 2.2e-16 ***
+common_language  1.612855   0.127482  12.651606 < 2.2e-16 ***
+colony_ever      0.139054   0.170712   0.814552   0.41566    
+log(distance)   -2.267021   0.081151 -27.935858 < 2.2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
                                            
