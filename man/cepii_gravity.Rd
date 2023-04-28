@@ -89,19 +89,20 @@ A data frame with 4,428,288 rows and 79 columns for the period
    tradeflow_imf_d \tab Trade flows as reported by the destination, 1000 Current USD (source: IMF) \cr
 }
 }
+\source{
+CEPII, adapted from the World Bank and other sources
+}
 \description{
-In Gravity, each observation is uniquely identified by the
-combination of the country_id of the origin country, the country_id of the
-destination country and the year. Gravity is “squared”, meaning that each
-country pair appears every year, even if one of the countries actually does
-not exist. However, based on the territorial changes tracked in the
-Countries dataset, we set to missing all variables for country pairs in
-which at least one of the countries does not exist in a given year.
-Furthermore, we provide two dummy variables indicating whether the origin
-and the destination countries exist. These dummies allow users wishing drop
-non-existing country pairs from the dataset to do so easily. Users looking
-for a more detailed account of country existence should turn to the
-Countries dataset.
+Each observation is uniquely identified by the
+combination of the ISO-3 code of the origin country, the ISO-3 code of the
+destination country and the year. Country pair appears every year, even if
+one of the countries actually does not exist. However, based on the
+territorial changes tracked in the countries dataset, we set to missing all
+variables for country pairs in which at least one of the countries does not
+exist in a given year. Furthermore, we provide two dummy variables
+indicating whether the origin and the destination countries exist. These
+dummies allow users wishing drop non-existing country pairs from the
+dataset.
 A few caveats on the identification of countries through country_id must be
 noted. Firstly, when countries merge, it is the new country or territorial
 configuration that exists during transition year but not the old country or
@@ -116,9 +117,6 @@ still keep these null observations to ensure that the final dataset is
 square.
 }
 \details{
-The details are the same as for the Countries dataset.
-}
-\author{
-CEPII, adapted from the World Bank and other sources
+The details are the same as for the countries dataset.
 }
 \keyword{data}

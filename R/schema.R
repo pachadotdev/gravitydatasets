@@ -32,11 +32,11 @@ create_schema <- function() {
     rta_coverage_description VARCHAR)"
   )
 
-  DBI::dbSendQuery(con, "DROP TABLE IF EXISTS cepii_country_names")
+  DBI::dbSendQuery(con, "DROP TABLE IF EXISTS cepii_country_information")
 
   DBI::dbSendQuery(
     con,
-    "CREATE TABLE cepii_country_names (
+    "CREATE TABLE cepii_country_information (
   	iso3 VARCHAR(3),
   	iso3num INTEGER,
   	country VARCHAR,

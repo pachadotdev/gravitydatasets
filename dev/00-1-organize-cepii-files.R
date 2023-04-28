@@ -177,7 +177,7 @@ rta_coverage <- tibble(
 rta_type <- tibble(
     rta_type_id = as.integer(attr(gravity[["rta_type"]], "labels")),
     rta_type_description = names(attr(gravity[["rta_type"]], "labels"))
-  ) %>% 
+  ) %>%
   mutate(
     rta_type_description = str_replace_all(rta_type_description, "CU", "Customs Union (CU)"),
     rta_type_description = str_replace_all(rta_type_description, "EIA", "Economic Integration Agreement (EIA)"),
@@ -216,7 +216,7 @@ rta_type <- tibble(
 #   select(all_of(col_names))
 
 write_tsv(gravity, "dev/fout/cepii_gravity.tsv", na = "")
-write_tsv(countries, "dev/fout/cepii_country_names.tsv", na = "")
+write_tsv(countries, "dev/fout/cepii_country_information.tsv", na = "")
 write_tsv(legal, "dev/fout/cepii_legal_origin.tsv", na = "")
 write_tsv(rta_coverage, "dev/fout/cepii_rta_coverage.tsv", na = "")
 write_tsv(rta_type, "dev/fout/cepii_rta_type.tsv", na = "")

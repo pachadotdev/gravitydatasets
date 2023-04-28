@@ -115,7 +115,7 @@ gravitydatasets_status <- function(msg = TRUE) {
 
 gravitydatasets_tables <- function() {
   c(
-    paste0("cepii_", c("country_names", "gravity", "legal_origin", "rta_coverage", "rta_type")),
+    paste0("cepii_", c("country_information", "gravity", "legal_origin", "rta_coverage", "rta_type")),
     paste0("usitc_", c("country_names", "gravity", "industry_names", "region_names", "sector_names", "trade")),
     paste0("wto_", c("country_names", "trade")),
     "metadata"

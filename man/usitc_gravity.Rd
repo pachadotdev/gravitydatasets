@@ -3,7 +3,7 @@
 \docType{data}
 \name{usitc_gravity}
 \alias{usitc_gravity}
-\title{USITC Gravity: Macroeconomic, geographic and institutional variables table.}
+\title{USITC Gravity Variables}
 \format{
 A data frame with 1,940,681 rows and 67 columns for the period 1986-2020:\tabular{ll}{
    Variable name \tab Variable description \cr
@@ -76,6 +76,9 @@ A data frame with 1,940,681 rows and 67 columns for the period 1986-2020:\tabula
    gdp_wdi_cap_const_d \tab Real GDP per capita of destination country (WDI) \cr
 }
 }
+\source{
+USITC, adapted from WTO, UN COMTRADE, National Geographic and other sources, with corrections made for the package
+}
 \description{
 The data goes back to 1986 and is suited to join with the \code{trade} table.
 }
@@ -86,8 +89,5 @@ There are differences with respect to the original CSV files. This version provi
 \item{Is limited to ISO codes contained in the \code{trade} table.}
 \item{The \code{region_origin} and \code{region_destination} columns are provided in the \verb{region names} table as \code{region_name} and can be joined by using the \code{region_id_} columns.}
 }
-}
-\author{
-USITC, adapted from WTO, UN COMTRADE, National Geographic and other sources, with corrections made for the package
 }
 \keyword{data}

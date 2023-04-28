@@ -11,10 +11,10 @@ A data frame with 4 rows and 2 columns:\tabular{ll}{
    broad_sector \tab Broad sector \cr
 }
 }
+\source{
+Own creation, adapted from the original ITPD-E
+}
 \description{
 USTIC-Derived Sector Names
-}
-\author{
-Own creation, adapted from the original ITPD-E
 }
 \keyword{data}

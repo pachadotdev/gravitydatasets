@@ -3,7 +3,7 @@
 \docType{data}
 \name{usitc_trade}
 \alias{usitc_trade}
-\title{USITC Trade at Sector-Level}
+\title{USITC Sector-Level Trade}
 \format{
 A data frame with 72,534,869 rows and 10 columns for the period
 1986-2020:\tabular{ll}{
@@ -23,6 +23,9 @@ A data frame with 72,534,869 rows and 10 columns for the period
    flag_zero \tab Flag indicator: \code{p} if positive trade, \code{r} if the raw data contained zero and `u`` missing (unknown, assigned zero) \cr
 }
 }
+\source{
+USITC, adapted from UN COMTRADE and other sources
+}
 \description{
 The data goes back to 1986 for Agriculture, and to 1988 for Mining & Energy and Manufacturing. Due to administrative data limitations, the data for Services is not available before to the year 2000.
 }
@@ -33,8 +36,5 @@ There are differences with respect to the original CSV file. This version provid
 \item{The \code{industry_descr} column is provided in the industry names table.}
 \item{The \code{broad_sector} column is provided in the sector names table and \code{broad_sector_id} was created for this version of the table.}
 }
-}
-\author{
-USITC, adapted from UN COMTRADE and other sources
 }
 \keyword{data}

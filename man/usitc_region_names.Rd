@@ -11,10 +11,10 @@ A data frame with 15 rows and 2 columns:\tabular{ll}{
    region \tab Region name \cr
 }
 }
+\source{
+Own creation, adapted from the original DGD
+}
 \description{
 USITC-Derived Region Names
-}
-\author{
-Own creation, adapted from the original DGD
 }
 \keyword{data}

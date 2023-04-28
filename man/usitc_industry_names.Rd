@@ -11,10 +11,10 @@ A data frame with 170 rows and 2 columns:\tabular{ll}{
    industry_descr \tab ITPD industry description \cr
 }
 }
+\source{
+Own creation, adapted from the original ITPD-E
+}
 \description{
 USITC-Derived Industry Names
-}
-\author{
-Own creation, adapted from the original ITPD-E
 }
 \keyword{data}

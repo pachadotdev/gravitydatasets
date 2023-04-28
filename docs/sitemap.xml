@@ -13,7 +13,7 @@
     <loc>/index.html</loc>
   </url>
   <url>
-    <loc>/reference/cepii_country_names.html</loc>
+    <loc>/reference/cepii_country_information.html</loc>
   </url>
   <url>
     <loc>/reference/cepii_gravity.html</loc>
@@ -53,5 +53,8 @@
   </url>
   <url>
     <loc>/reference/usitc_trade.html</loc>
+  </url>
+  <url>
+    <loc>/reference/wto_country_names.html</loc>
   </url>
 </urlset>

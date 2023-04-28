@@ -12,10 +12,10 @@ A data frame with 267 rows and 3 columns:\tabular{ll}{
    country_name \tab Name of the country \cr
 }
 }
+\source{
+Own creation, adapted from the original DGD
+}
 \description{
 USITC-Derived Country Names
-}
-\author{
-Own creation, adapted from the original DGD
 }
 \keyword{data}
