@@ -5,15 +5,7 @@
 
 ## About
 
-The goal of `gravitydatasets` is to provide access to the following datasets:
-
-* [Gravity](http://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=8) 
-* [International Trade and Production Database for Estimation (ITPD-E)](https://www.usitc.gov/data/gravity/itpde.htm)
-* [Dynamic Gravity Dataset (DGD)](https://www.usitc.gov/data/gravity/dgd.htm)
-
-Ready to be used in R (i.e. for gravity estimation with the [gravity](https://pacha.dev/gravity) package).
-
-Aims at gathering in a single place a set of variables adapted that could be useful to researchers or practitioners that use the structural gravity model of trade. We provide trade flows, as well as geographic, cultural, trade facilitation and macroeconomic variables. The tables provided here were reshaped under Cobb's Normal Form, and in some cases contain corrections that we explain in the GitHub repository. The specific sources are the Gravity database from the Center for Prospective Studies and International Information (CEPII), the International Trade and Production Database for Estimation (ITPD-E) and the Dynamic Gravity Database (DGD) from the US International Trade Commission (USITC), and the Structural Gravity Database (SGD) from the World Trade Organization (WTO).
+Aims at gathering in a single place a set of variables adapted that could be useful to researchers or practitioners that use the structural gravity model of trade. We provide trade flows, as well as geographic, cultural, trade facilitation and macroeconomic variables. The tables provided here were reshaped under Cobb's Normal Form, and in some cases contain corrections that we explain in the GitHub repository. The specific sources are the [Gravity database](http://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=8) from the Center for Prospective Studies and International Information (CEPII), the [International Trade and Production Database for Estimation (ITPD-E)](https://www.usitc.gov/data/gravity/itpde.htm) and the [Dynamic Gravity Database (DGD)](https://www.usitc.gov/data/gravity/dgd.htm) from the US International Trade Commission (USITC), and the [Structural Gravity Database (SGD)](https://www.wto.org/english/res_e/reser_e/structural_gravity_e.htm) from the World Trade Organization (WTO).
 
 `gravitydatasets` can be installed by running
 
