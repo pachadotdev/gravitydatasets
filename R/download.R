@@ -12,12 +12,12 @@
 #' @param local_file The path to a local zip file. If this is provided, the
 #' function will not download the file from GitHub and will instead use the
 #' local file.
-#' 
+#'
 #' @return NULL
 #' @export
 #'
 #' @importFrom archive archive_extract
-#' 
+#'
 #' @examples
 #' \dontrun{ gravitydatasets_download() }
 gravitydatasets_download <- function(ver = NULL, local_file = NULL) {
@@ -59,11 +59,11 @@ gravitydatasets_download <- function(ver = NULL, local_file = NULL) {
   }
 
   msg("Unzipping the necessary files...")
-  # TODO: use archive
   archive::archive_extract(zfile, dir = destdir)
   unlink(zfile)
 
   finp_tsv <- list.files(destdir, full.names = TRUE, pattern = "tsv")
+  finp_tsv <- c(finp_tsv[!grepl("_gravity\\.tsv$|_trade\\.tsv$", finp_tsv)], finp_tsv[grepl("_gravity\\.tsv$|_trade\\.tsv$", finp_tsv)])
 
   invisible(create_schema())
 

@@ -11,7 +11,9 @@ create_schema <- function() {
     con,
     "CREATE TABLE cepii_legal_origin (
   	legal_origin_id INTEGER,
-  	legal_origin VARCHAR)"
+  	legal_origin VARCHAR,
+    PRIMARY KEY (legal_origin_id)
+    )"
   )
 
   DBI::dbSendQuery(con, "DROP TABLE IF EXISTS cepii_rta_type")
@@ -20,7 +22,9 @@ create_schema <- function() {
     con,
     "CREATE TABLE cepii_rta_type (
   	rta_type_id INTEGER,
-  	rta_type_description VARCHAR)"
+  	rta_type_description VARCHAR,
+    PRIMARY KEY (rta_type_id)
+    )"
   )
 
   DBI::dbSendQuery(con, "DROP TABLE IF EXISTS cepii_rta_coverage")
@@ -29,7 +33,9 @@ create_schema <- function() {
     con,
     "CREATE TABLE cepii_rta_coverage (
   	rta_coverage_id INTEGER,
-    rta_coverage_description VARCHAR)"
+    rta_coverage_description VARCHAR,
+    PRIMARY KEY (rta_coverage_id)
+    )"
   )
 
   DBI::dbSendQuery(con, "DROP TABLE IF EXISTS cepii_country_information")
@@ -39,12 +45,15 @@ create_schema <- function() {
     "CREATE TABLE cepii_country_information (
   	iso3 VARCHAR(3),
   	iso3num INTEGER,
+    iso3_dynamic VARCHAR(5),
   	country VARCHAR,
   	countrylong VARCHAR,
   	first_year INTEGER,
   	last_year INTEGER,
   	countrygroup_iso3 VARCHAR(3),
-  	countrygroup_iso3num INTEGER)"
+  	countrygroup_iso3num INTEGER,
+  	PRIMARY KEY (iso3_dynamic)
+    )"
   )
 
   DBI::dbSendQuery(con, "DROP TABLE IF EXISTS cepii_gravity")
@@ -52,11 +61,13 @@ create_schema <- function() {
   DBI::dbSendQuery(
     con,
     "CREATE TABLE cepii_gravity (
-  	year DOUBLE,
+  	year INTEGER,
   	iso3_o VARCHAR(3),
-  	iso3_d VARCHAR(3),
-  	iso3num_o INTEGER,
+    iso3num_o INTEGER,
+    iso3_o_dynamic VARCHAR(5),
+    iso3_d VARCHAR(3),
   	iso3num_d INTEGER,
+    iso3_d_dynamic VARCHAR(5),
   	country_exists_o INTEGER,
   	country_exists_d INTEGER,
   	gmt_offset_2020_o INTEGER,
@@ -130,57 +141,18 @@ create_schema <- function() {
   	tradeflow_baci DOUBLE,
   	manuf_tradeflow_baci DOUBLE,
   	tradeflow_imf_o DOUBLE,
-  	tradeflow_imf_d DOUBLE)"
+  	tradeflow_imf_d DOUBLE,
+    PRIMARY KEY (year, iso3_o_dynamic, iso3_d_dynamic),
+    FOREIGN KEY (iso3_o_dynamic) REFERENCES cepii_country_information(iso3_dynamic),
+    FOREIGN KEY (iso3_d_dynamic) REFERENCES cepii_country_information(iso3_dynamic),
+    FOREIGN KEY (legal_old_o) REFERENCES cepii_legal_origin(legal_origin_id),
+    FOREIGN KEY (legal_old_d) REFERENCES cepii_legal_origin(legal_origin_id),
+    FOREIGN KEY (legal_new_o) REFERENCES cepii_legal_origin(legal_origin_id),
+    FOREIGN KEY (legal_new_d) REFERENCES cepii_legal_origin(legal_origin_id),
+    FOREIGN KEY (rta_coverage) REFERENCES cepii_rta_coverage(rta_coverage_id),
+    FOREIGN KEY (rta_type) REFERENCES cepii_rta_type(rta_type_id)
+    )"
   )
-
-  # add primary keys
-
-  # DBI::dbSendQuery(
-  #   con,
-  #   "ALTER TABLE cepii_gravity ADD PRIMARY KEY (year, iso3_o, iso3_d)"
-  # )
-
-  # add foreign keys
-
-  # DBI::dbSendQuery(
-  #   con,
-  #   "ALTER TABLE cepii_gravity ADD FOREIGN KEY (iso3_o) REFERENCES cepii_countries(iso3)"
-  # )
-
-  # DBI::dbSendQuery(
-  #   con,
-  #   "ALTER TABLE cepii_gravity ADD FOREIGN KEY (iso3_d) REFERENCES cepii_countries(iso3)"
-  # )
-
-  # DBI::dbSendQuery(
-  #   con,
-  #   "ALTER TABLE cepii_gravity ADD FOREIGN KEY (legal_old_o) REFERENCES cepii_legal_origin(legal_origin_id)"
-  # )
-
-  # DBI::dbSendQuery(
-  #   con,
-  #   "ALTER TABLE cepii_gravity ADD FOREIGN KEY (legal_old_d) REFERENCES cepii_legal_origin(legal_origin_id)"
-  # )
-
-  # DBI::dbSendQuery(
-  #   con,
-  #   "ALTER TABLE cepii_gravity ADD FOREIGN KEY (legal_new_o) REFERENCES cepii_legal_origin(legal_origin_id)"
-  # )
-
-  # DBI::dbSendQuery(
-  #   con,
-  #   "ALTER TABLE cepii_gravity ADD FOREIGN KEY (legal_new_d) REFERENCES cepii_legal_origin(legal_origin_id)"
-  # )
-
-  # DBI::dbSendQuery(
-  #   con,
-  #   "ALTER TABLE cepii_gravity ADD FOREIGN KEY (rta_coverage) REFERENCES cepii_rta_coverage(rta_coverage_id)"
-  # )
-
-  # DBI::dbSendQuery(
-  #   con,
-  #   "ALTER TABLE cepii_gravity ADD FOREIGN KEY (rta_type) REFERENCES cepii_rta_type(rta_type_id)"
-  # )
 
   # USITC ----
 
@@ -191,7 +163,9 @@ create_schema <- function() {
     "CREATE TABLE usitc_country_names (
   	country_iso3 CHAR(3),
 	  country_dynamic_code VARCHAR(5),
-  	country_name VARCHAR)"
+  	country_name VARCHAR,
+  	PRIMARY KEY (country_dynamic_code)
+    )"
   )
 
   DBI::dbSendQuery(con, "DROP TABLE IF EXISTS usitc_industry_names")
@@ -200,7 +174,9 @@ create_schema <- function() {
     con,
     "CREATE TABLE usitc_industry_names (
   	industry_id INTEGER,
-	  industry_descr VARCHAR)"
+	  industry_descr VARCHAR,
+	  PRIMARY KEY (industry_id)
+    )"
   )
 
   DBI::dbSendQuery(con, "DROP TABLE IF EXISTS usitc_sector_names")
@@ -209,7 +185,20 @@ create_schema <- function() {
     con,
     "CREATE TABLE usitc_sector_names (
   	broad_sector_id INTEGER,
-	  broad_sector VARCHAR)"
+	  broad_sector VARCHAR,
+	  PRIMARY KEY (broad_sector_id)
+    )"
+  )
+
+  DBI::dbSendQuery(con, "DROP TABLE IF EXISTS usitc_region_names")
+
+  DBI::dbSendQuery(
+    con,
+    "CREATE TABLE usitc_region_names (
+  	region_id INTEGER,
+  	region_name VARCHAR,
+  	PRIMARY KEY (region_id)
+    )"
   )
 
   DBI::dbSendQuery(con, "DROP TABLE IF EXISTS usitc_trade")
@@ -226,16 +215,13 @@ create_schema <- function() {
   	year INTEGER,
   	trade FLOAT,
   	flag_mirror CHAR(1),
-  	flag_zero CHAR(1))"
-  )
-
-  DBI::dbSendQuery(con, "DROP TABLE IF EXISTS usitc_region_names")
-
-  DBI::dbSendQuery(
-    con,
-    "CREATE TABLE usitc_region_names (
-  	region_id INTEGER,
-  	region_name VARCHAR)"
+  	flag_zero CHAR(1),
+  	PRIMARY KEY (exporter_dynamic_code, importer_dynamic_code, year, industry_id),
+  	FOREIGN KEY (exporter_dynamic_code) REFERENCES usitc_country_names(country_dynamic_code),
+  	FOREIGN KEY (importer_dynamic_code) REFERENCES usitc_country_names(country_dynamic_code),
+  	FOREIGN KEY (broad_sector_id) REFERENCES usitc_sector_names(broad_sector_id),
+  	FOREIGN KEY (industry_id) REFERENCES usitc_industry_names(industry_id)
+  	)"
   )
 
   DBI::dbSendQuery(con, "DROP TABLE IF EXISTS usitc_gravity")
@@ -309,79 +295,27 @@ create_schema <- function() {
     gdp_wdi_cur_d DOUBLE,
     gdp_wdi_cap_cur_d DOUBLE,
     gdp_wdi_const_d DOUBLE,
-    gdp_wdi_cap_const_d DOUBLE)"
+    gdp_wdi_cap_const_d DOUBLE,
+    PRIMARY KEY (year, dynamic_code_o, dynamic_code_d),
+    FOREIGN KEY (dynamic_code_o) REFERENCES usitc_country_names(country_dynamic_code),
+    FOREIGN KEY (dynamic_code_d) REFERENCES usitc_country_names(country_dynamic_code),
+    FOREIGN KEY (region_id_o) REFERENCES usitc_region_names(region_id),
+  	FOREIGN KEY (region_id_d) REFERENCES usitc_region_names(region_id)
+    )"
   )
 
-  # add primary keys
-
-  # DBI::dbSendQuery(
-  #   con,
-  #   "ALTER TABLE usitc_trade ADD PRIMARY KEY (exporter_iso3, importer_iso3, broad_sector_id, industry_id, year)"
-  # )
-
-  # DBI::dbSendQuery(
-  #   con,
-  #   "ALTER TABLE usitc_gravity ADD PRIMARY KEY (year, iso3_o, iso3_d)"
-  # )
-
-  # add foreign keys
-
-  # DBI::dbSendQuery(
-  #   con,
-  #   "ALTER TABLE usitc_gravity ADD FOREIGN KEY (iso3_o) REFERENCES usitc_country_names(country_iso3)"
-  # )
-
-  # DBI::dbSendQuery(
-  #   con,
-  #   "ALTER TABLE usitc_gravity ADD FOREIGN KEY (iso3_d) REFERENCES usitc_country_names(country_iso3)"
-  # )
-
-  # DBI::dbSendQuery(
-  #   con,
-  #   "ALTER TABLE usitc_gravity ADD FOREIGN KEY (dynamic_code_o) REFERENCES usitc_country_names(country_dynamic_code)"
-  # )
-
-  # DBI::dbSendQuery(
-  #   con,
-  #   "ALTER TABLE usitc_gravity ADD FOREIGN KEY (dynamic_code_d) REFERENCES usitc_country_names(country_dynamic_code)"
-  # )
-
-  # DBI::dbSendQuery(
-  #   con,
-  #   "ALTER TABLE usitc_gravity ADD FOREIGN KEY (region_id_o) REFERENCES usitc_region_names(region_id)"
-  # )
-
-  # DBI::dbSendQuery(
-  #   con,
-  #   "ALTER TABLE usitc_gravity ADD FOREIGN KEY (region_id_d) REFERENCES usitc_region_names(region_id)"
-  # )
-
-  # DBI::dbSendQuery(
-  #   con,
-  #   "ALTER TABLE usitc_trade ADD FOREIGN KEY (exporter_iso3) REFERENCES usitc_country_names(country_iso3)"
-  # )
-
-  # DBI::dbSendQuery(
-  #   con,
-  #   "ALTER TABLE usitc_trade ADD FOREIGN KEY (importer_iso3) REFERENCES usitc_country_names(country_iso3)"
-  # )
-
-  # DBI::dbSendQuery(
-  #   con,
-  #   "ALTER TABLE usitc_trade ADD FOREIGN KEY (exporter_dynamic_code) REFERENCES usitc_country_names(country_dynamic_code)"
-  # )
-
-  # DBI::dbSendQuery(
-  #   con,
-  #   "ALTER TABLE usitc_trade ADD FOREIGN KEY (importer_dynamic_code) REFERENCES usitc_country_names(country_dynamic_code)"
-  # )
-
-  # DBI::dbSendQuery(
-  #   con,
-  #   "ALTER TABLE usitc_trade ADD FOREIGN KEY (broad_sector_id) REFERENCES usitc_sector_names(broad_sector_id)"
-  # )
-
   # WTO ----
+
+  DBI::dbSendQuery(con, "DROP TABLE IF EXISTS wto_country_names")
+
+  DBI::dbSendQuery(
+    con,
+    "CREATE TABLE wto_country_names (
+    country_iso3 CHAR(3),
+    country_name VARCHAR(255),
+    PRIMARY KEY (country_iso3)
+    )"
+  )
 
   DBI::dbSendQuery(con, "DROP TABLE IF EXISTS wto_trade")
 
@@ -392,16 +326,11 @@ create_schema <- function() {
     year INTEGER,
     exporter_iso3 CHAR(3),
     importer_iso3 CHAR(3),
-    trade DOUBLE)"
-  )
-
-  DBI::dbSendQuery(con, "DROP TABLE IF EXISTS wto_country_names")
-
-  DBI::dbSendQuery(
-    con,
-    "CREATE TABLE wto_country_names (
-    country_iso3 CHAR(3),
-    country_name VARCHAR(255))"
+    trade DOUBLE,
+    PRIMARY KEY (year, exporter_iso3, importer_iso3),
+    FOREIGN KEY (exporter_iso3) REFERENCES wto_country_names(country_iso3),
+    FOREIGN KEY (importer_iso3) REFERENCES wto_country_names(country_iso3)
+    )"
   )
 
   # disconnect ----

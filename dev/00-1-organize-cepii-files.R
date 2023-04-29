@@ -44,6 +44,30 @@ countries <- read_stata(finp[1]) %>%
   # mutate(iso3 = tolower(iso3)) %>%
   mutate_if(is.character, function(x) ifelse(x == "", NA, x))
 
+# to create primary key later, this will remove Malaysia+Singapore
+countries <- countries %>%
+  filter(!is.na(iso3))
+
+countries %>% group_by(iso3) %>% count() %>% filter(n > 1)
+
+countries <- countries %>%
+  mutate(
+    iso3_dynamic = case_when(
+      iso3 == "ANT" & iso3num == 532L ~ "ANT.X", # Netherlands Antilles + Aruba up to 1986
+      iso3 == "DEU" & iso3num == 280L ~ "DEU.X", # West Germany up to 1990
+      iso3 == "ETH" & iso3num == 230L ~ "ETF", # Ethiopia + Eritrea up to 1993
+      iso3 == "IDN" & country == "Indonesia + Timor-Leste" ~ "IDN.X", # up to 2002
+      iso3 == "PAK" & country == "Pakistan + Bangladesh" ~ "PAK.X", # up to 1971
+      iso3 == "SDN" & iso3num == 736L ~ "SDN.X", # Sudan + South Sudan before 2011
+      iso3 == "VNM" & country == "South Vietnam" ~ "VNM.X", # Vietnam up to 1976
+      iso3 == "YEM" & country == "North Yemen" ~ "YEM.X", # Yemen up to 1990
+      TRUE ~  iso3
+    )
+  )
+
+countries <- countries %>%
+  select(iso3, iso3num, iso3_dynamic, everything())
+
 unique(nchar(countries$iso3))
 
 gravity <- read_stata(finp[2]) %>%
@@ -183,6 +207,88 @@ rta_type <- tibble(
     rta_type_description = str_replace_all(rta_type_description, "EIA", "Economic Integration Agreement (EIA)"),
     rta_type_description = str_replace_all(rta_type_description, "FTA", "Free Trade Agreement (FTA)"),
     rta_type_description = str_replace_all(rta_type_description, "PSA", "Partial Scope Agreement (PSA)")
+  )
+
+gravity <- gravity %>%
+  mutate(
+    iso3_o_dynamic = case_when(
+      iso3_o == "ANT" & iso3num_o == 532L ~ "ANT.X",
+      iso3_o == "DEU" & iso3num_o == 280L ~ "DEU.X",
+      iso3_o == "ETH" & iso3num_o == 230L ~ "ETF",
+      iso3_o == "IDN" & year <= 2002L ~ "IDN.X",
+      iso3_o == "PAK" & year <= 1971L ~ "PAK.X",
+      iso3_o == "SDN" & iso3num_o == 736L ~ "SDN.X",
+      iso3_o == "VNM" & year <= 1976L ~ "VNM.X", # Vietnam up to 1976
+      iso3_o == "YEM" & year <= 1990L ~ "YEM.X",
+      TRUE ~  iso3_o
+    ),
+    iso3_d_dynamic = case_when(
+      iso3_d == "ANT" & iso3num_d == 532L ~ "ANT.X",
+      iso3_d == "DEU" & iso3num_d == 280L ~ "DEU.X",
+      iso3_d == "ETH" & iso3num_d == 230L ~ "ETF",
+      iso3_d == "IDN" & year <= 2002L ~ "IDN.X",
+      iso3_d == "PAK" & year <= 1971L ~ "PAK.X",
+      iso3_d == "SDN" & iso3num_d == 736L ~ "SDN.X",
+      iso3_d == "VNM" & year <= 1976L ~ "VNM.X", # Vietnam up to 1976
+      iso3_d == "YEM" & year <= 1990L ~ "YEM.X",
+      TRUE ~  iso3_d
+    )
+  ) %>%
+  select(year, iso3_o, iso3num_o, iso3_o_dynamic, iso3_d, iso3num_d, iso3_d_dynamic, everything())
+
+# countries %>%
+#   filter(iso3 == "DEU")
+
+# gravity %>%
+#   filter(iso3_o_dynamic %in% c("ANT", "ANT.X")) %>%
+#   print(n = 60)
+
+# gravity %>%
+#   filter(iso3_o_dynamic %in% c("DEU", "DEU.X")) %>%
+#   print(n = 100)
+
+# gravity %>%
+#   filter(iso3_o_dynamic %in% c("ETH", "ETF")) %>%
+#   print(n = 100)
+
+# gravity %>%
+#   filter(iso3_o_dynamic %in% c("IDN", "IDN.X")) %>%
+#   print(n = 100)
+
+# gravity %>%
+#   filter(iso3_o_dynamic %in% c("PAK", "PAK.X")) %>%
+#   print(n = 100)
+
+# gravity %>%
+#   filter(iso3_o_dynamic %in% c("SDN", "SDN.X")) %>%
+#   print(n = 100)
+
+# we need to fix the rta_type = 8, it has no labels and doesn't allow to create a foreign key
+
+gravity %>%
+  distinct(rta_type) %>%
+  arrange()
+
+gravity %>%
+  filter(rta == 0) %>%
+  select(year, iso3_o, iso3_d, rta, rta_type)
+
+gravity %>%
+  filter(rta_type == 8) %>%
+  select(year, iso3_o, iso3_d, rta, rta_type)
+
+gravity %>%
+  filter(rta_type == 8) %>%
+  select(iso3_o, iso3_d, rta, rta_type) %>%
+  distinct() %>%
+  print(n = 30)   
+
+gravity <- gravity %>%
+  mutate(
+    rta_type = case_when(
+      rta_type == 8 ~ NA_integer_,
+      TRUE ~ rta_type
+    )
   )
 
 # export ----

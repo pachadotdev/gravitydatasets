@@ -6,16 +6,17 @@
 #' @docType data
 #' @source CEPII, adapted from the World Bank and other sources
 #' @format A data frame with 257 rows and 8 columns:
-#' |variable             |description                         |
-#' |:--------------------|:-----------------------------------|
-#' |iso3                 |ISO3 alphabetic                     |
-#' |iso3num              |ISO3 numeric                        |
-#' |country              |Country name                        |
-#' |countrylong          |Country official name               |
-#' |first_year           |First year of territorial existence |
-#' |last_year            |Last year of territorial existence  |
-#' |countrygroup_iso3    |Country group (ISO3 alphabetic)     |
-#' |countrygroup_iso3num |Country group (ISO3 numeric)        |
+#' |variable             |description                               |
+#' |:--------------------|:-----------------------------------------|
+#' |iso3                 |ISO3 alphabetic                           |
+#' |iso3num              |ISO3 numeric                              |
+#' |iso3_dynamic         |DGD's dynamic country code of the country |
+#' |country              |Country name                              |
+#' |countrylong          |Country official name                     |
+#' |first_year           |First year of territorial existence       |
+#' |last_year            |Last year of territorial existence        |
+#' |countrygroup_iso3    |Country group (ISO3 alphabetic)           |
+#' |countrygroup_iso3num |Country group (ISO3 numeric)              |
 #' @description Allows for a full identification of each country included in the
 #'  gravity dataset and, if relevant, for a tracking of its territorial changes
 #'  (splits and merges).  Includes one observation for each territorial
@@ -25,7 +26,8 @@
 #' @details There are differences with respect to the original Stata version.
 #'  ISO3 alphabetic codes of length zero were converted to NAs and the
 #'  attributes (i.e., column descriptions), when missing, were added after
-#'  reading the original documentation.
+#'  reading the original documentation. The dynamic codes were added to the
+#'  dataset and follow from USITC's DGD codes
 #' @keywords data
 NULL
 
@@ -39,9 +41,11 @@ NULL
 #' |:----------------------|:--------------------------------------------------------------------------------|
 #' |year                   |Year                                                                             |
 #' |iso3_o                 |Origin ISO3 alphabetic                                                           |
-#' |iso3_d                 |Destination ISO3 alphabetic                                                      |
 #' |iso3num_o              |Origin ISO3 numeric                                                              |
+#' |iso3_o_dynamic         |Origin DGD's dynamic country code of the country                                 |
+#' |iso3_d                 |Destination ISO3 alphabetic                                                      |
 #' |iso3num_d              |Destination ISO3 numeric                                                         |
+#' |iso3_d_dynamic         |Destination DGD's dynamic country code of the country                            |
 #' |country_exists_o       |1 = Origin country exists                                                        |
 #' |country_exists_d       |1 = Destination country exists                                                   |
 #' |gmt_offset_2020_o      |Origin GMT offset (hours)                                                        |

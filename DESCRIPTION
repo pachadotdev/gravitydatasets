@@ -1,6 +1,6 @@
 Package: gravitydatasets
 Title: Datasets for Structural Gravity Modeling
-Version: 0.1
+Version: 0.2.0
 Authors@R: 
     c(
      person("Mauricio", "Vargas Sepulveda",
@@ -13,7 +13,7 @@ Authors@R:
      person(family = "United States International Trade Comission (USITC)",
             role = "dtc")
     )
-Description: Aims at gathering in a single place a set of variables adapted 
+Description: Aims at gathering in a single place a set of variables 
     that could be useful to researchers or practitioners that use the 
     structural gravity model of trade. We provide trade flows, as well as 
     geographic, cultural, trade facilitation and macroeconomic variables. The
@@ -35,7 +35,7 @@ URL: https://pacha.dev/gravitydatasets
 BugReports: https://github.com/pachadotdev/gravitydatasets/issues
 Imports: 
     DBI,
-    duckdb,
+    duckdb (>= 0.7.1-1),
     httr,
     purrr,
     cli,

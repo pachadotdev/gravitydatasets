@@ -35,9 +35,6 @@ country_names <- trade %>%
             distinct()
     )
 
-country_names %>%
-    filter(is.na(country_name))
-
 # See https://wits.worldbank.org/wits/wits/witshelp/content/codes/country_codes.htm
 country_names <- country_names %>%
     mutate(
@@ -49,6 +46,22 @@ country_names <- country_names %>%
             TRUE ~ country_name
         )
     )
+
+country_names %>%
+    group_by(country_iso3) %>%
+    count() %>%
+    filter(n > 1)
+
+trade %>%
+    group_by(year, exporter_iso3, importer_iso3) %>%
+    count() %>%
+    filter(n > 1)
+
+country_names %>%
+    filter(country_iso3 %in% c("DEU", "MMR", "YEM"))
+
+country_names <- country_names %>%
+    filter(!country_name %in% c("West Germany", "Yemen, North", "Burma"))
 
 write_tsv(trade, paste0(fout, "wto_trade.tsv"), na = "")
 write_tsv(country_names, paste0(fout, "wto_country_names.tsv"), na = "")
