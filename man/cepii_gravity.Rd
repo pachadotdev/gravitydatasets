@@ -10,9 +10,11 @@ A data frame with 4,428,288 rows and 79 columns for the period
    variable \tab description \cr
    year \tab Year \cr
    iso3_o \tab Origin ISO3 alphabetic \cr
-   iso3_d \tab Destination ISO3 alphabetic \cr
    iso3num_o \tab Origin ISO3 numeric \cr
+   iso3_o_dynamic \tab Origin DGD's dynamic country code of the country \cr
+   iso3_d \tab Destination ISO3 alphabetic \cr
    iso3num_d \tab Destination ISO3 numeric \cr
+   iso3_d_dynamic \tab Destination DGD's dynamic country code of the country \cr
    country_exists_o \tab 1 = Origin country exists \cr
    country_exists_d \tab 1 = Destination country exists \cr
    gmt_offset_2020_o \tab Origin GMT offset (hours) \cr

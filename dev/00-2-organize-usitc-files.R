@@ -88,6 +88,27 @@ if (!file.exists(trade_tsv)) {
     bind_cols(sector_names_2) %>%
     select(exporter_iso3:importer_dynamic_code, broad_sector_id, industry_id:flag_zero)
 
+  # trade2 <- trade %>%
+  #   select(year, exporter_dynamic_code, importer_dynamic_code, industry_id) %>%
+  #   group_by(year) %>%
+  #   nest()
+  #
+  # trade2 <- map_df(
+  #   trade2 %>% pull(year),
+  #   function(y) {
+  #     message(y)
+  #
+  #     trade2 %>%
+  #       filter(year == y) %>%
+  #       unnest(cols = data) %>%
+  #       group_by(exporter_dynamic_code, importer_dynamic_code, industry_id) %>%
+  #       count() %>%
+  #       filter(n > 1)
+  #   }
+  # )
+  #
+  # trade2
+
   write_tsv(trade, trade_tsv, na = "")
   write_tsv(country_names, paste0(fout, "usitc_country_names.tsv"), na = "")
   write_tsv(industry_names, paste0(fout, "usitc_industry_names.tsv"), na = "")

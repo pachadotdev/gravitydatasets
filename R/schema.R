@@ -142,7 +142,6 @@ create_schema <- function() {
   	manuf_tradeflow_baci DOUBLE,
   	tradeflow_imf_o DOUBLE,
   	tradeflow_imf_d DOUBLE,
-    PRIMARY KEY (year, iso3_o_dynamic, iso3_d_dynamic),
     FOREIGN KEY (iso3_o_dynamic) REFERENCES cepii_country_information(iso3_dynamic),
     FOREIGN KEY (iso3_d_dynamic) REFERENCES cepii_country_information(iso3_dynamic),
     FOREIGN KEY (legal_old_o) REFERENCES cepii_legal_origin(legal_origin_id),
@@ -216,7 +215,6 @@ create_schema <- function() {
   	trade FLOAT,
   	flag_mirror CHAR(1),
   	flag_zero CHAR(1),
-  	PRIMARY KEY (exporter_dynamic_code, importer_dynamic_code, year, industry_id),
   	FOREIGN KEY (exporter_dynamic_code) REFERENCES usitc_country_names(country_dynamic_code),
   	FOREIGN KEY (importer_dynamic_code) REFERENCES usitc_country_names(country_dynamic_code),
   	FOREIGN KEY (broad_sector_id) REFERENCES usitc_sector_names(broad_sector_id),
@@ -296,7 +294,6 @@ create_schema <- function() {
     gdp_wdi_cap_cur_d DOUBLE,
     gdp_wdi_const_d DOUBLE,
     gdp_wdi_cap_const_d DOUBLE,
-    PRIMARY KEY (year, dynamic_code_o, dynamic_code_d),
     FOREIGN KEY (dynamic_code_o) REFERENCES usitc_country_names(country_dynamic_code),
     FOREIGN KEY (dynamic_code_d) REFERENCES usitc_country_names(country_dynamic_code),
     FOREIGN KEY (region_id_o) REFERENCES usitc_region_names(region_id),
@@ -327,7 +324,6 @@ create_schema <- function() {
     exporter_iso3 CHAR(3),
     importer_iso3 CHAR(3),
     trade DOUBLE,
-    PRIMARY KEY (year, exporter_iso3, importer_iso3),
     FOREIGN KEY (exporter_iso3) REFERENCES wto_country_names(country_iso3),
     FOREIGN KEY (importer_iso3) REFERENCES wto_country_names(country_iso3)
     )"

@@ -9,6 +9,7 @@ A data frame with 257 rows and 8 columns:\tabular{ll}{
    variable \tab description \cr
    iso3 \tab ISO3 alphabetic \cr
    iso3num \tab ISO3 numeric \cr
+   iso3_dynamic \tab DGD's dynamic country code of the country \cr
    country \tab Country name \cr
    countrylong \tab Country official name \cr
    first_year \tab First year of territorial existence \cr
@@ -32,6 +33,7 @@ for West Germany, one for East Germany and one for the unified Germany.
 There are differences with respect to the original Stata version.
 ISO3 alphabetic codes of length zero were converted to NAs and the
 attributes (i.e., column descriptions), when missing, were added after
-reading the original documentation.
+reading the original documentation. The dynamic codes were added to the
+dataset and follow from USITC's DGD codes
 }
 \keyword{data}
