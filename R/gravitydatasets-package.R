@@ -43,6 +43,7 @@ NULL
 #' |:----------------------|:-----------------------------|
 #' |pop_source_id          |Population source ID          |
 #' |pop_source_description |Population source description |
+NULL
 
 #' @title CEPII GDP Source
 #' @name cepii_gdp_source
@@ -53,6 +54,7 @@ NULL
 #' |:----------------------|:----------------------|
 #' |gdp_source_id          |GDP source ID          |
 #' |gdp_source_description |GDP source description |
+NULL
 
 #' @title CEPII Gravity
 #' @name cepii_gravity

@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Datasets for Structural Gravity Modeling">
-<meta property="og:description" content="Aims at gathering in a single place a set of variables adapted 
+<meta property="og:description" content="Aims at gathering in a single place a set of variables 
     that could be useful to researchers or practitioners that use the 
     structural gravity model of trade. We provide trade flows, as well as 
     geographic, cultural, trade facilitation and macroeconomic variables. The
@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">gravitydatasets</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.0</span>
       </span>
     </div>
 
@@ -105,6 +105,12 @@
 <ul>
 <li>Fixes inconsistent indexing in the legal origins columns in the <code>cepii_gravity</code> table to match with the <code>cepii_legal_origin</code> table correctly.</li>
 <li>Includes explanations for the abbreviations (i.e., Customs Union (CU) instead of just CU for the RTA types)</li>
+<li>Removes Malaysia+Singapore in the country information table because it has no ISO-3 code and there is no trade or gravity information for it.</li>
+<li>Includes a dynamic ISO-3 code to be able to create primary keys, this is similar to the USITC dataset buw we added the code ANT.X for the Netherland Antilles + Aruba up to 1986.</li>
+</ul>
+<p>Some changes that applied to Gravity V202102 but not to V202211 because those were corrected upstream:</p>
+<ul>
+<li>The RTA types equal to 8 were replaced by NAs, because those do not provide a description, are not aligned with the WTO classification, and do not allow to create a foreign key.</li>
 </ul>
 </div>
 <div class="section level3">
@@ -189,7 +195,7 @@
 <span>        itfe <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">importer_iso3</span>, <span class="va">year</span>, sep <span class="op">=</span> <span class="st">"_"</span><span class="op">)</span></span>
 <span>      <span class="op">)</span></span>
 <span>    </span>
-<span>    <span class="fu"><a href="https://lrberge.github.io/fixest/reference/feglm.html" class="external-link">feglm</a></span><span class="op">(</span><span class="va">trade</span> <span class="op">~</span> <span class="va">contiguity</span> <span class="op">+</span> <span class="va">common_language</span> <span class="op">+</span> <span class="va">colony_ever</span> <span class="op">+</span> </span>
+<span>    <span class="fu">feglm</span><span class="op">(</span><span class="va">trade</span> <span class="op">~</span> <span class="va">contiguity</span> <span class="op">+</span> <span class="va">common_language</span> <span class="op">+</span> <span class="va">colony_ever</span> <span class="op">+</span> </span>
 <span>            <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">distance</span><span class="op">)</span> <span class="op">|</span> <span class="va">etfe</span> <span class="op">+</span> <span class="va">itfe</span>,</span>
 <span>          family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">quasipoisson</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>          data <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span>
