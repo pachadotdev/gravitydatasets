@@ -63,14 +63,31 @@ gravitydatasets_download <- function(ver = NULL, local_file = NULL) {
   unlink(zfile)
 
   finp_tsv <- list.files(destdir, full.names = TRUE, pattern = "tsv")
-  finp_tsv <- c(finp_tsv[!grepl("_gravity\\.tsv$|_trade\\.tsv$", finp_tsv)], finp_tsv[grepl("_gravity\\.tsv$|_trade\\.tsv$", finp_tsv)])
+  finp_tsv <- c(finp_tsv[!grepl("_gravity_part.*\\.tsv$|_trade_part.*\\.tsv$", finp_tsv)], finp_tsv[grepl("_gravity.*\\.tsv$|_trade.*\\.tsv$", finp_tsv)])
 
+  msg("Creating the database...")
   invisible(create_schema())
 
   for (x in seq_along(finp_tsv)) {
     tout <- gsub(".*/", "", gsub("\\.tsv", "", finp_tsv[x]))
 
-    msg(sprintf("Creating %s table...", tout))
+    if (isFALSE(grepl("_part", tout))) {
+      part <- 1L
+    } else {
+      part <- gsub(".*_part", "", tout)
+    }
+
+    tout <- gsub("_part.*", "", tout)
+
+    part2 <- max(grep(tout, finp_tsv, value = T))
+    part2 <- gsub(".*/", "", gsub("\\.tsv", "", part2))
+    if (isFALSE(grepl("_part", part2))) {
+      part2 <- 1L
+    } else {
+      part2 <- gsub(".*_part", "", part2)
+    }
+
+    msg(sprintf("Copying %s table (part %s of %s)...", tout, part, part2))
 
     con <- gravitydatasets_connect()
 
@@ -143,4 +160,3 @@ get_gh_release_file <- function(repo, tag_name = NULL, dir = tempdir(),
   attr(out_path, "ver") <- release_obj[[1]]$tag_name
   return(out_path)
 }
-

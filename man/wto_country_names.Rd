@@ -10,24 +10,10 @@ A data frame with 232 rows and 3 columns:\tabular{ll}{
    country_iso3 \tab Country ISO3 alphabetic \cr
    country_name \tab Country name \cr
 }
-
-A data frame with 972,692 rows and 5 columns for the period
-1980-2016:\tabular{ll}{
-   variable \tab description \cr
-   pair_id \tab Exporter-Importer index \cr
-   year \tab Year of observation \cr
-   exporter_iso3 \tab Exporter ISO3 alphabetic \cr
-   importer_iso3 \tab Importer ISO3 alphabetic \cr
-   trade \tab Trade flows in current US dollars \cr
-}
 }
 \source{
 Own creation, adapted from the original SGD
-
-WTO
 }
 \description{
 WTO Country Names
-
-WTO Trade
 }

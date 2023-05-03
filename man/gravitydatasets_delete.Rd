@@ -15,5 +15,7 @@ Deletes the \code{gravitydatasets} directory and all of its contents, including
 all versions of the gravitydatasets database created with any DuckDB version.
 }
 \examples{
-\dontrun{ gravitydatasets_delete() }
+\dontrun{
+gravitydatasets_delete()
+}
 }

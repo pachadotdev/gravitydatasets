@@ -7,15 +7,18 @@
 \format{
 A data frame with 257 rows and 8 columns:\tabular{ll}{
    variable \tab description \cr
+   country_id \tab Combines a country's ISO3 code with a number identifying potential territorial transformations of the country \cr
    iso3 \tab ISO3 alphabetic \cr
    iso3num \tab ISO3 numeric \cr
-   iso3_dynamic \tab DGD's dynamic country code of the country \cr
    country \tab Country name \cr
    countrylong \tab Country official name \cr
    first_year \tab First year of territorial existence \cr
    last_year \tab Last year of territorial existence \cr
    countrygroup_iso3 \tab Country group (ISO3 alphabetic) \cr
    countrygroup_iso3num \tab Country group (ISO3 numeric) \cr
+   iso2 \tab ISO2 alphabetic \cr
+   heg_iso3_2020 \tab PENDING \cr
+   heg_iso3num_2020 \tab PENDING \cr
 }
 }
 \source{

@@ -36,6 +36,9 @@ The key differences are:
 * Includes explanations for the abbreviations (i.e., Customs Union (CU) instead of just CU for the RTA types)
 * Removes Malaysia+Singapore in the country information table because it has no ISO-3 code and there is no trade or gravity information for it.
 * Includes a dynamic ISO-3 code to be able to create primary keys, this is similar to the USITC dataset buw we added the code ANT.X for the Netherland Antilles + Aruba up to 1986.
+
+Some changes that applied to Gravity V202102 but not to V202211 because those were corrected upstream:
+
 * The RTA types equal to 8 were replaced by NAs, because those do not provide a description, are not aligned with the WTO classification, and do not allow to create a foreign key.
 
 ### USITC

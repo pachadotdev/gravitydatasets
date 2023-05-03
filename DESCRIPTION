@@ -1,6 +1,6 @@
 Package: gravitydatasets
 Title: Datasets for Structural Gravity Modeling
-Version: 0.2.0
+Version: 0.4.0
 Authors@R: 
     c(
      person("Mauricio", "Vargas Sepulveda",
@@ -28,20 +28,20 @@ Description: Aims at gathering in a single place a set of variables
 License: CC0
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.2.2
 Depends: 
     R (>= 2.10)
 URL: https://pacha.dev/gravitydatasets
 BugReports: https://github.com/pachadotdev/gravitydatasets/issues
 Imports: 
     DBI,
-    duckdb (>= 0.7.1-1),
     httr,
     purrr,
     cli,
     crayon,
     rstudioapi,
     tools,
-    archive
+    archive,
+    duckdb
 Suggests: 
     gravity

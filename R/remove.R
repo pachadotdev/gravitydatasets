@@ -9,14 +9,17 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{ gravitydatasets_delete() }
+#' \dontrun{
+#' gravitydatasets_delete()
+#' }
 gravitydatasets_delete <- function(ask = TRUE) {
   if (isTRUE(ask)) {
     answer <- utils::menu(c("Agree", "Cancel"),
-                   title = "This will eliminate all gravitydatasets databases",
-                   graphics = FALSE)
+      title = "This will eliminate all gravitydatasets databases",
+      graphics = FALSE
+    )
     if (answer == 2) {
-       return(invisible())
+      return(invisible())
     }
   }
 

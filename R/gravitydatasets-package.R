@@ -6,17 +6,20 @@
 #' @docType data
 #' @source CEPII, adapted from the World Bank and other sources
 #' @format A data frame with 257 rows and 8 columns:
-#' |variable             |description                               |
-#' |:--------------------|:-----------------------------------------|
-#' |iso3                 |ISO3 alphabetic                           |
-#' |iso3num              |ISO3 numeric                              |
-#' |iso3_dynamic         |DGD's dynamic country code of the country |
-#' |country              |Country name                              |
-#' |countrylong          |Country official name                     |
-#' |first_year           |First year of territorial existence       |
-#' |last_year            |Last year of territorial existence        |
-#' |countrygroup_iso3    |Country group (ISO3 alphabetic)           |
-#' |countrygroup_iso3num |Country group (ISO3 numeric)              |
+#' |variable             |description                                                                                                   |
+#' |:--------------------|:-------------------------------------------------------------------------------------------------------------|
+#' |country_id           |Combines a country's ISO3 code with a number identifying potential territorial transformations of the country |
+#' |iso3                 |ISO3 alphabetic                                                                                               |
+#' |iso3num              |ISO3 numeric                                                                                                  |
+#' |country              |Country name                                                                                                  |
+#' |countrylong          |Country official name                                                                                         |
+#' |first_year           |First year of territorial existence                                                                           |
+#' |last_year            |Last year of territorial existence                                                                            |
+#' |countrygroup_iso3    |Country group (ISO3 alphabetic)                                                                               |
+#' |countrygroup_iso3num |Country group (ISO3 numeric)                                                                                  |
+#' |iso2                 |ISO2 alphabetic                                                                                               |
+#' |heg_iso3_2020        |PENDING                                                                                                       |
+#' |heg_iso3num_2020     |PENDING                                                                                                       |
 #' @description Allows for a full identification of each country included in the
 #'  gravity dataset and, if relevant, for a tracking of its territorial changes
 #'  (splits and merges).  Includes one observation for each territorial
@@ -31,95 +34,121 @@
 #' @keywords data
 NULL
 
+#' @title CEPII Population Source
+#' @name cepii_population_source
+#' @docType data
+#' @source CEPII
+#' @format A data frame with 3 rows and 2 columns:
+#' |variable               |description                                                             |
+#' |:----------------------|:-----------------------------|
+#' |pop_source_id          |Population source ID          |
+#' |pop_source_description |Population source description |
+
+#' @title CEPII GDP Source
+#' @name cepii_gdp_source
+#' @docType data
+#' @source CEPII
+#' @format A data frame with 3 rows and 2 columns:
+#' |variable               |description            |
+#' |:----------------------|:----------------------|
+#' |gdp_source_id          |GDP source ID          |
+#' |gdp_source_description |GDP source description |
+
 #' @title CEPII Gravity
 #' @name cepii_gravity
 #' @docType data
 #' @source CEPII, adapted from the World Bank and other sources
 #' @format A data frame with 4,428,288 rows and 79 columns for the period
 #' 1948-2019:
-#' |variable               |description                                                                      |
-#' |:----------------------|:--------------------------------------------------------------------------------|
-#' |year                   |Year                                                                             |
-#' |iso3_o                 |Origin ISO3 alphabetic                                                           |
-#' |iso3num_o              |Origin ISO3 numeric                                                              |
-#' |iso3_o_dynamic         |Origin DGD's dynamic country code of the country                                 |
-#' |iso3_d                 |Destination ISO3 alphabetic                                                      |
-#' |iso3num_d              |Destination ISO3 numeric                                                         |
-#' |iso3_d_dynamic         |Destination DGD's dynamic country code of the country                            |
-#' |country_exists_o       |1 = Origin country exists                                                        |
-#' |country_exists_d       |1 = Destination country exists                                                   |
-#' |gmt_offset_2020_o      |Origin GMT offset (hours)                                                        |
-#' |gmt_offset_2020_d      |Destination GMT offset (hours)                                                   |
-#' |contig                 |1 = Contiguity                                                                   |
-#' |dist                   |Distance between most populated cities, in km                                    |
-#' |distw                  |Population-weighted distance between most populated cities, in km                |
-#' |distcap                |Distance between capitals, in km                                                 |
-#' |distwces               |Population-weighted distance between most populated cities, in km, using CES for |
-#' |dist_source            |1 = Distance taken directly from CEPII's GeoDist; 0 = Based on close country     |
-#' |comlang_off            |1 = Common official or primary language                                          |
-#' |comlang_ethno          |1 = Language is spoken by at least 9% of the population                          |
-#' |comcol                 |1 = Common colonizer post 1945                                                   |
-#' |comrelig               |Common religion index                                                            |
-#' |col45                  |1 = Pair in colonial relationship post 1945                                      |
-#' |legal_old_o            |Origin legal system before transition                                            |
-#' |legal_old_d            |Destination legal system before transition                                       |
-#' |legal_new_o            |Origin legal system after transition                                             |
-#' |legal_new_d            |Destination legal system after transition                                        |
-#' |comleg_pretrans        |1 = Common legal origins before transition                                       |
-#' |comleg_posttrans       |1 = Common legal origins after transition                                        |
-#' |transition_legalchange |1 = Common legal origin changed since transition                                 |
-#' |heg_o                  |1 = Origin is current or former hegemon of destination                           |
-#' |heg_d                  |1 = Destination is current or former hegemon of origin                           |
-#' |col_dep_ever           |1 = Pair ever in colonial or dependency relationship                             |
-#' |col_dep                |1 = Pair currently in colonial or dependency relationship                        |
-#' |col_dep_end_year       |Independence date, if col_dep = 1                                                |
-#' |col_dep_end_conflict   |1 = Independence involved conflict, if col_dep_ever = 1                          |
-#' |empire                 |Hegemon if sibling = 1 and year < sever_year                                     |
-#' |sibling_ever           |1 = Pair ever in sibling relationship                                            |
-#' |sibling                |1 = Pair currently in sibling relationship                                       |
-#' |sever_year             |Severance year for pairs if sibling == 1                                         |
-#' |sib_conflict           |1 = Pair ever in sibling relationship and conflict with hegemon                  |
-#' |pop_o                  |Origin Population, total in thousands                                            |
-#' |pop_d                  |Destination Population, total in thousands                                       |
-#' |gdp_o                  |Origin GDP (current thousands US$)                                               |
-#' |gdp_d                  |Destination GDP (current thousands US$)                                          |
-#' |gdpcap_o               |Origin GDP per cap (current thousands US$)                                       |
-#' |gdpcap_d               |Destination GDP per cap (current thousands US$)                                  |
-#' |pop_source_o           |Origin Population source                                                         |
-#' |pop_source_d           |Destination Population source                                                    |
-#' |gdp_source_o           |Origin GDP source                                                                |
-#' |gdp_source_d           |Destination GDP source                                                           |
-#' |gdp_ppp_o              |Origin GDP, PPP (current thousands international $)                              |
-#' |gdp_ppp_d              |Destination GDP, PPP (current thousands international $)                         |
-#' |gdpcap_ppp_o           |Origin GDP per cap, PPP (current thousands international $)                      |
-#' |gdpcap_ppp_d           |Destination GDP per cap, PPP (current thousands international $)                 |
-#' |pop_pwt_o              |Origin Population, total in thousands (PWT)                                      |
-#' |pop_pwt_d              |Destination Population, total in thousands (PWT)                                 |
-#' |gdp_ppp_pwt_o          |Origin GDP, current PPP (2011 thousands US$) (PWT)                               |
-#' |gdp_ppp_pwt_d          |Destination GDP, current PPP (2011 thousands US$) (PWT)                          |
-#' |gatt_o                 |Origin GATT membership                                                           |
-#' |gatt_d                 |Destination GATT membership                                                      |
-#' |wto_o                  |Origin WTO membership                                                            |
-#' |wto_d                  |Destination WTO membership                                                       |
-#' |eu_o                   |1 = Origin is a EU member                                                        |
-#' |eu_d                   |1 = Destination is a EU member                                                   |
-#' |rta                    |1 = RTA (source: WTO)                                                            |
-#' |rta_coverage           |Coverage of RTA (source: WTO)                                                    |
-#' |rta_type               |Type of RTA (source: WTO)                                                        |
-#' |entry_cost_o           |Origin Cost of business start-up procedures (% of GNI per capita)                |
-#' |entry_cost_d           |Destination Cost of business start-up procedures (% of GNI per capita)           |
-#' |entry_proc_o           |Origin Start-up procedures to register a business (number)                       |
-#' |entry_proc_d           |Destination Start-up procedures to register a business (number)                  |
-#' |entry_time_o           |Origin Time required to start a business (days)                                  |
-#' |entry_time_d           |Destination Time required to start a business (days)                             |
-#' |entry_tp_o             |Origin Days + procedures to start a business                                     |
-#' |entry_tp_d             |Destination Days + procedures to start a business                                |
-#' |tradeflow_comtrade_o   |Trade flows as reported by the origin, 1000 Current USD (source: UNSD)           |
-#' |tradeflow_comtrade_d   |Trade flows as reported by the destination, 1000 Current USD (source: UNSD)      |
-#' |tradeflow_baci         |Trade flow, 1000 USD (source: BACI)                                              |
-#' |manuf_tradeflow_baci   |Trade flow of manufactured goods, 1000 USD (source: BACI)                        |
-#' |tradeflow_imf_o        |Trade flows as reported by the origin, 1000 Current USD (source: IMF)            |
-#' |tradeflow_imf_d        |Trade flows as reported by the destination, 1000 Current USD (source: IMF)       |
+#' |variable               |description                                                                                 |
+#' |:----------------------|:-------------------------------------------------------------------------------------------|
+#' |year                   |Year                                                                                        |
+#' |country_id_o           |Origin country ID                                                                           |
+#' |country_id_d           |Destination country ID                                                                      |
+#' |iso3_o                 |Origin ISO3 alphabetic                                                                      |
+#' |iso3_d                 |Destination ISO3 alphabetic                                                                 |
+#' |iso3num_o              |Origin ISO3 numeric                                                                         |
+#' |iso3num_d              |Destination ISO3 numeric                                                                    |
+#' |country_exists_o       |1 = Origin country exists                                                                   |
+#' |country_exists_d       |1 = Destination country exists                                                              |
+#' |gmt_offset_2020_o      |Origin GMT offset (hours)                                                                   |
+#' |gmt_offset_2020_d      |Destination GMT offset (hours)                                                              |
+#' |distw_harmonic         |Population-weighted distance between most populated cities (harmonic mean)                  |
+#' |distw_arithmetic       |Population-weighted distance between most populated cities (arithmetic mean)                |
+#' |distw_harmonic_jh      |Population-weighted distance between most populated cities (harmonic mean) by Julian Hinz   |
+#' |distw_arithmetic_jh    |Population-weighted distance between most populated cities (arithmetic mean) by Julian Hinz |
+#' |dist                   |Distance between most populated cities, in km                                               |
+#' |main_city_source_o     |Source of origin's most populated city                                                      |
+#' |main_city_source_d     |Source of destination's most populated city                                                 |
+#' |distcap                |Distance between capitals, in km                                                            |
+#' |contig                 |1 = Contiguity                                                                              |
+#' |diplo_disagreement     |UN diplomatic disagreement score                                                            |
+#' |scaled_sci_2021        |Social connectedness index in 2021                                                          |
+#' |comlang_off            |1 = Common official or primary language                                                     |
+#' |comlang_ethno          |1 = Language is spoken by at least 9% of the population                                     |
+#' |comcol                 |1 = Common colonizer post 1945                                                              |
+#' |col45                  |1 = Pair in colonial relationship post 1945                                                 |
+#' |legal_old_o            |Origin legal system before transition                                                       |
+#' |legal_old_d            |Destination legal system before transition                                                  |
+#' |legal_new_o            |Origin legal system after transition                                                        |
+#' |legal_new_d            |Destination legal system after transition                                                   |
+#' |comleg_pretrans        |1 = Common legal origins before transition                                                  |
+#' |comleg_posttrans       |1 = Common legal origins after transition                                                   |
+#' |transition_legalchange |1 = Common legal origin changed since transition                                            |
+#' |comrelig               |Common religion index                                                                       |
+#' |heg_o                  |1 = Origin is current or former hegemon of destination                                      |
+#' |heg_d                  |1 = Destination is current or former hegemon of origin                                      |
+#' |col_dep_ever           |1 = Pair ever in colonial or dependency relationship                                        |
+#' |col_dep                |1 = Pair currently in colonial or dependency relationship                                   |
+#' |col_dep_end_year       |Independence date, if col_dep = 1                                                           |
+#' |col_dep_end_conflict   |1 = Independence involved conflict, if col_dep_ever = 1                                     |
+#' |empire                 |Hegemon if sibling = 1 and year < sever_year                                                |
+#' |sibling_ever           |1 = Pair ever in sibling relationship                                                       |  
+#' |sibling                |1 = Pair currently in sibling relationship                                                  |
+#' |sever_year             |Severance year for pairs if sibling == 1                                                    |
+#' |sib_conflict           |1 = Pair ever in sibling relationship and conflict with hegemon                             |
+#' |pop_o                  |Origin Population, total in thousands                                                       |
+#' |pop_d                  |Destination Population, total in thousands                                                  |
+#' |gdp_o                  |Origin GDP (current thousands US$)                                                          |
+#' |gdp_d                  |Destination GDP (current thousands US$)                                                     |
+#' |gdpcap_o               |Origin GDP per cap (current thousands US$)                                                  |
+#' |gdpcap_d               |Destination GDP per cap (current thousands US$)                                             | 
+#' |pop_source_o           |Origin Population source                                                                    |
+#' |pop_source_d           |Destination Population source                                                               |
+#' |gdp_source_o           |Origin GDP source                                                                           |
+#' |gdp_source_d           |Destination GDP source                                                                      |
+#' |gdp_ppp_o              |Origin GDP, PPP (current thousands international $)                                         |
+#' |gdp_ppp_d              |Destination GDP, PPP (current thousands international $)                                    |
+#' |gdpcap_ppp_o           |Origin GDP per cap, PPP (current thousands international $)                                 |
+#' |gdpcap_ppp_d           |Destination GDP per cap, PPP (current thousands international $)                            |
+#' |pop_pwt_o              |Origin Population, total in thousands (PWT)                                                 |
+#' |pop_pwt_d              |Destination Population, total in thousands (PWT)                                            |
+#' |gdp_ppp_pwt_o          |Origin GDP, current PPP (2011 thousands US$) (PWT)                                          |
+#' |gdp_ppp_pwt_d          |Destination GDP, current PPP (2011 thousands US$) (PWT)                                     |
+#' |gatt_o                 |Origin GATT membership                                                                      |
+#' |gatt_d                 |Destination GATT membership                                                                 |
+#' |wto_o                  |Origin WTO membership                                                                       |
+#' |wto_d                  |Destination WTO membership                                                                  |
+#' |eu_o                   |1 = Origin is a EU member                                                                   |
+#' |eu_d                   |1 = Destination is a EU member                                                              |
+#' |fta_wto                |1 = The country pair is engaged in a regional trade agreement (source: WTO, supplemented by T. Mayer) |
+#' |fta_wto_raw            |1 = The country pair is engaged in a regional trade agreement (source: WTO)                 |
+#' |rta_coverage           |Coverage of RTA (source: WTO)                                                               |
+#' |rta_type               |Type of RTA (source: WTO)                                                                   |
+#' |entry_cost_o           |Origin Cost of business start-up procedures (% of GNI per capita)                           |
+#' |entry_cost_d           |Destination Cost of business start-up procedures (% of GNI per capita)                      |
+#' |entry_proc_o           |Origin Start-up procedures to register a business (number)                                  |
+#' |entry_proc_d           |Destination Start-up procedures to register a business (number)                             |
+#' |entry_time_o           |Origin Time required to start a business (days)                                             |
+#' |entry_time_d           |Destination Time required to start a business (days)                                        |
+#' |entry_tp_o             |Origin Days + procedures to start a business                                                |
+#' |entry_tp_d             |Destination Days + procedures to start a business                                           |
+#' |tradeflow_comtrade_o   |Trade flows as reported by the origin, 1000 Current USD (source: UNSD)                      |
+#' |tradeflow_comtrade_d   |Trade flows as reported by the destination, 1000 Current USD (source: UNSD)                 |
+#' |tradeflow_baci         |Trade flow, 1000 USD (source: BACI)                                                         |
+#' |manuf_tradeflow_baci   |Trade flow of manufactured goods, 1000 USD (source: BACI)                                   |
+#' |tradeflow_imf_o        |Trade flows as reported by the origin, 1000 Current USD (source: IMF)                       |
+#' |tradeflow_imf_d        |Trade flows as reported by the destination, 1000 Current USD (source: IMF)                  |
 #' @description Each observation is uniquely identified by the
 #'  combination of the ISO-3 code of the origin country, the ISO-3 code of the
 #'  destination country and the year. Country pair appears every year, even if
@@ -319,6 +348,7 @@ NULL
 #' |:--------------------|:-----------------------------------|
 #' |country_iso3         |Country ISO3 alphabetic             |
 #' |country_name         |Country name                        |
+NULL
 
 #' @title WTO Trade
 #' @name wto_trade

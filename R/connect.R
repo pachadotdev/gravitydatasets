@@ -102,11 +102,11 @@ gravitydatasets_status <- function(msg = TRUE) {
 
   if (isTRUE(all.equal(expected_tables, existing_tables))) {
     status_msg <- crayon::green(paste(cli::symbol$tick,
-    "The local gravitydatasets database is OK."))
+                                      "The local gravitydatasets database is OK."))
     out <- TRUE
   } else {
     status_msg <- crayon::red(paste(cli::symbol$cross,
-    "The local gravitydatasets database is empty, damaged or not compatible with your duckdb version. Download it with gravitydatasets_download()."))
+                                    "The local gravitydatasets database is empty, damaged or not compatible with your duckdb version. Download it with gravitydatasets_download()."))
     out <- FALSE
   }
   if (msg) msg(status_msg)
@@ -115,7 +115,7 @@ gravitydatasets_status <- function(msg = TRUE) {
 
 gravitydatasets_tables <- function() {
   c(
-    paste0("cepii_", c("country_information", "gravity", "legal_origin", "rta_coverage", "rta_type")),
+    paste0("cepii_", c("country_information", "gdp_source", "gravity", "legal_origin", "main_city_source", "pop_source", "rta_coverage", "rta_type")),
     paste0("usitc_", c("country_names", "gravity", "industry_names", "region_names", "sector_names", "trade")),
     paste0("wto_", c("country_names", "trade")),
     "metadata"

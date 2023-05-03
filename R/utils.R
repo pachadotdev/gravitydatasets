@@ -25,8 +25,9 @@ text_col <- function(x) {
 
 in_chk <- function() {
   any(
-    grepl("check",
-          sapply(sys.calls(), function(a) paste(deparse(a), collapse = "\n"))
+    grepl(
+      "check",
+      sapply(sys.calls(), function(a) paste(deparse(a), collapse = "\n"))
     )
   )
 }

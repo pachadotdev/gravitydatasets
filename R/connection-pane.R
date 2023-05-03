@@ -1,6 +1,6 @@
 sql_action <- function() {
   if (requireNamespace("rstudioapi", quietly = TRUE) &&
-      exists("documentNew", asNamespace("rstudioapi"))) {
+    exists("documentNew", asNamespace("rstudioapi"))) {
     contents <- paste(
       "-- !preview conn=gravitydatasets::gravitydatasets_connect()",
       "",
@@ -41,17 +41,23 @@ gravitydatasets_pane <- function() {
         )
       },
       listColumns = function(table) {
-        res <- DBI::dbGetQuery(gravitydatasets_connect(),
-                               paste("SELECT * FROM", table, "LIMIT 1"))
+        res <- DBI::dbGetQuery(
+          gravitydatasets_connect(),
+          paste("SELECT * FROM", table, "LIMIT 1")
+        )
         data.frame(
-          name = names(res), type = vapply(res, function(x) class(x)[1],
-                                           character(1)),
+          name = names(res), type = vapply(
+            res, function(x) class(x)[1],
+            character(1)
+          ),
           stringsAsFactors = FALSE
         )
       },
       previewObject = function(rowLimit, table) {
-        DBI::dbGetQuery(gravitydatasets_connect(),
-                        paste("SELECT * FROM", table, "LIMIT", rowLimit))
+        DBI::dbGetQuery(
+          gravitydatasets_connect(),
+          paste("SELECT * FROM", table, "LIMIT", rowLimit)
+        )
       },
       actions = list(
         Status = list(

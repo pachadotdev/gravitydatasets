@@ -3,7 +3,7 @@
 create_schema <- function() {
   con <- gravitydatasets_connect()
 
-  # CEPII ----
+  # cepii ----
 
   DBI::dbSendQuery(con, "DROP TABLE IF EXISTS cepii_legal_origin")
 
@@ -12,7 +12,7 @@ create_schema <- function() {
     "CREATE TABLE cepii_legal_origin (
   	legal_origin_id INTEGER,
   	legal_origin VARCHAR,
-    PRIMARY KEY (legal_origin_id)
+  	CONSTRAINT cepii_legal_origin_PK PRIMARY KEY (legal_origin_id)
     )"
   )
 
@@ -23,7 +23,7 @@ create_schema <- function() {
     "CREATE TABLE cepii_rta_type (
   	rta_type_id INTEGER,
   	rta_type_description VARCHAR,
-    PRIMARY KEY (rta_type_id)
+  	CONSTRAINT cepii_rta_type_PK PRIMARY KEY (rta_type_id)
     )"
   )
 
@@ -34,7 +34,7 @@ create_schema <- function() {
     "CREATE TABLE cepii_rta_coverage (
   	rta_coverage_id INTEGER,
     rta_coverage_description VARCHAR,
-    PRIMARY KEY (rta_coverage_id)
+    CONSTRAINT cepii_rta_coverage_PK PRIMARY KEY (rta_coverage_id)
     )"
   )
 
@@ -43,16 +43,52 @@ create_schema <- function() {
   DBI::dbSendQuery(
     con,
     "CREATE TABLE cepii_country_information (
+    country_id VARCHAR(5),
   	iso3 VARCHAR(3),
   	iso3num INTEGER,
-    iso3_dynamic VARCHAR(5),
   	country VARCHAR,
   	countrylong VARCHAR,
   	first_year INTEGER,
   	last_year INTEGER,
   	countrygroup_iso3 VARCHAR(3),
   	countrygroup_iso3num INTEGER,
-  	PRIMARY KEY (iso3_dynamic)
+    iso2 VARCHAR(2),
+    heg_iso3_2020 VARCHAR(3),
+    heg_iso3num_2020 INTEGER,
+  	CONSTRAINT cepii_country_information_PK PRIMARY KEY (country_id)
+    )"
+  )
+
+  DBI::dbSendQuery(con, "DROP TABLE IF EXISTS cepii_pop_source")
+
+  DBI::dbSendQuery(
+    con,
+    "CREATE TABLE cepii_pop_source (
+  	pop_source_id INTEGER,
+  	pop_source VARCHAR,
+  	CONSTRAINT cepii_pop_source_PK PRIMARY KEY (pop_source_id)
+    )"
+  )
+
+  DBI::dbSendQuery(con, "DROP TABLE IF EXISTS cepii_gdp_source")
+
+  DBI::dbSendQuery(
+    con,
+    "CREATE TABLE cepii_gdp_source (
+  	gdp_source_id INTEGER,
+  	gdp_source VARCHAR,
+  	CONSTRAINT cepii_gdp_source_PK PRIMARY KEY (gdp_source_id)
+    )"
+  )
+
+  DBI::dbSendQuery(con, "DROP TABLE IF EXISTS cepii_main_city_source")
+
+  DBI::dbSendQuery(
+    con,
+    "CREATE TABLE cepii_main_city_source (
+  	main_city_source_id INTEGER,
+  	main_city_source VARCHAR,
+  	CONSTRAINT cepii_main_city_source_PK PRIMARY KEY (main_city_source_id)
     )"
   )
 
@@ -62,26 +98,30 @@ create_schema <- function() {
     con,
     "CREATE TABLE cepii_gravity (
   	year INTEGER,
+    country_id_o VARCHAR(5),
+    country_id_d VARCHAR(5),
   	iso3_o VARCHAR(3),
-    iso3num_o INTEGER,
-    iso3_o_dynamic VARCHAR(5),
     iso3_d VARCHAR(3),
+    iso3num_o INTEGER,
   	iso3num_d INTEGER,
-    iso3_d_dynamic VARCHAR(5),
   	country_exists_o INTEGER,
   	country_exists_d INTEGER,
   	gmt_offset_2020_o INTEGER,
   	gmt_offset_2020_d INTEGER,
-  	contig INTEGER,
+    distw_harmonic DOUBLE,
+    distw_arithmetic DOUBLE,
+    distw_harmonic_jh DOUBLE,
+    distw_arithmetic_jh DOUBLE,
   	dist DOUBLE,
-  	distw DOUBLE,
+    main_city_source_o INTEGER,
+    main_city_source_d INTEGER,
   	distcap DOUBLE,
-  	distwces DOUBLE,
-  	dist_source INTEGER,
+    contig INTEGER,
+    diplo_disagreement DOUBLE,
+    scaled_sci_2021 INTEGER,
   	comlang_off INTEGER,
   	comlang_ethno INTEGER,
   	comcol INTEGER,
-  	comrelig DOUBLE,
   	col45 INTEGER,
   	legal_old_o INTEGER,
   	legal_old_d INTEGER,
@@ -90,6 +130,7 @@ create_schema <- function() {
   	comleg_pretrans INTEGER,
   	comleg_posttrans INTEGER,
   	transition_legalchange INTEGER,
+    comrelig DOUBLE,
   	heg_o INTEGER,
   	heg_d INTEGER,
   	col_dep_ever INTEGER,
@@ -107,10 +148,10 @@ create_schema <- function() {
   	gdp_d DOUBLE,
   	gdpcap_o DOUBLE,
   	gdpcap_d DOUBLE,
-  	pop_source_o DOUBLE,
-  	pop_source_d DOUBLE,
-  	gdp_source_o DOUBLE,
-  	gdp_source_d DOUBLE,
+  	pop_source_o INTEGER,
+  	pop_source_d INTEGER,
+  	gdp_source_o INTEGER,
+  	gdp_source_d INTEGER,
   	gdp_ppp_o DOUBLE,
   	gdp_ppp_d DOUBLE,
   	gdpcap_ppp_o DOUBLE,
@@ -125,7 +166,8 @@ create_schema <- function() {
   	wto_d INTEGER,
   	eu_o INTEGER,
   	eu_d INTEGER,
-  	rta INTEGER,
+    fta_wto INTEGER,
+    fta_wto_raw INTEGER,
   	rta_coverage INTEGER,
   	rta_type INTEGER,
   	entry_cost_o DOUBLE,
@@ -142,18 +184,25 @@ create_schema <- function() {
   	manuf_tradeflow_baci DOUBLE,
   	tradeflow_imf_o DOUBLE,
   	tradeflow_imf_d DOUBLE,
-    FOREIGN KEY (iso3_o_dynamic) REFERENCES cepii_country_information(iso3_dynamic),
-    FOREIGN KEY (iso3_d_dynamic) REFERENCES cepii_country_information(iso3_dynamic),
-    FOREIGN KEY (legal_old_o) REFERENCES cepii_legal_origin(legal_origin_id),
-    FOREIGN KEY (legal_old_d) REFERENCES cepii_legal_origin(legal_origin_id),
-    FOREIGN KEY (legal_new_o) REFERENCES cepii_legal_origin(legal_origin_id),
-    FOREIGN KEY (legal_new_d) REFERENCES cepii_legal_origin(legal_origin_id),
-    FOREIGN KEY (rta_coverage) REFERENCES cepii_rta_coverage(rta_coverage_id),
-    FOREIGN KEY (rta_type) REFERENCES cepii_rta_type(rta_type_id)
+    CONSTRAINT cepii_gravity_PK PRIMARY KEY (year, country_id_o, country_id_d),
+    CONSTRAINT cepii_gravity_FK1 FOREIGN KEY (country_id_o) REFERENCES cepii_country_information(country_id),
+    CONSTRAINT cepii_gravity_FK2 FOREIGN KEY (country_id_d) REFERENCES cepii_country_information(country_id),
+    CONSTRAINT cepii_gravity_FK3 FOREIGN KEY (legal_old_o) REFERENCES cepii_legal_origin(legal_origin_id),
+    CONSTRAINT cepii_gravity_FK4 FOREIGN KEY (legal_old_d) REFERENCES cepii_legal_origin(legal_origin_id),
+    CONSTRAINT cepii_gravity_FK5 FOREIGN KEY (legal_new_o) REFERENCES cepii_legal_origin(legal_origin_id),
+    CONSTRAINT cepii_gravity_FK6 FOREIGN KEY (legal_new_d) REFERENCES cepii_legal_origin(legal_origin_id),
+    CONSTRAINT cepii_gravity_FK7 FOREIGN KEY (rta_coverage) REFERENCES cepii_rta_coverage(rta_coverage_id),
+    CONSTRAINT cepii_gravity_FK8 FOREIGN KEY (rta_type) REFERENCES cepii_rta_type(rta_type_id),
+    CONSTRAINT cepii_gravity_FK9 FOREIGN KEY (pop_source_o) REFERENCES cepii_pop_source(pop_source_id),
+    CONSTRAINT cepii_gravity_FK10 FOREIGN KEY (pop_source_d) REFERENCES cepii_pop_source(pop_source_id),
+    CONSTRAINT cepii_gravity_FK11 FOREIGN KEY (gdp_source_o) REFERENCES cepii_gdp_source(gdp_source_id),
+    CONSTRAINT cepii_gravity_FK12 FOREIGN KEY (gdp_source_d) REFERENCES cepii_gdp_source(gdp_source_id),
+    CONSTRAINT cepii_gravity_FK13 FOREIGN KEY (main_city_source_o) REFERENCES cepii_main_city_source(main_city_source_id),
+    CONSTRAINT cepii_gravity_FK14 FOREIGN KEY (main_city_source_d) REFERENCES cepii_main_city_source(main_city_source_id)
     )"
   )
 
-  # USITC ----
+  # usitc -----
 
   DBI::dbSendQuery(con, "DROP TABLE IF EXISTS usitc_country_names")
 
@@ -163,7 +212,7 @@ create_schema <- function() {
   	country_iso3 CHAR(3),
 	  country_dynamic_code VARCHAR(5),
   	country_name VARCHAR,
-  	PRIMARY KEY (country_dynamic_code)
+  	CONSTRAINT usitc_country_names_PK PRIMARY KEY (country_dynamic_code)
     )"
   )
 
@@ -174,7 +223,7 @@ create_schema <- function() {
     "CREATE TABLE usitc_industry_names (
   	industry_id INTEGER,
 	  industry_descr VARCHAR,
-	  PRIMARY KEY (industry_id)
+	  CONSTRAINT usitc_industry_names_PK PRIMARY KEY (industry_id)
     )"
   )
 
@@ -185,8 +234,31 @@ create_schema <- function() {
     "CREATE TABLE usitc_sector_names (
   	broad_sector_id INTEGER,
 	  broad_sector VARCHAR,
-	  PRIMARY KEY (broad_sector_id)
+	  CONSTRAINT usitc_sector_names_PK PRIMARY KEY (broad_sector_id)
     )"
+  )
+
+  DBI::dbSendQuery(con, "DROP TABLE IF EXISTS usitc_trade")
+
+  DBI::dbSendQuery(
+    con,
+    "CREATE TABLE usitc_trade (
+    year INTEGER,
+  	exporter_iso3 CHAR(3),
+  	exporter_dynamic_code VARCHAR(5),
+  	importer_iso3 CHAR(3),
+  	importer_dynamic_code VARCHAR(5),
+  	broad_sector_id INTEGER,
+  	industry_id INTEGER,
+  	trade FLOAT,
+  	flag_mirror CHAR(1),
+  	flag_zero CHAR(1),
+    CONSTRAINT usitc_trade_PK PRIMARY KEY (exporter_dynamic_code, importer_dynamic_code, industry_id, year),
+  	CONSTRAINT usitc_trade_FK1 FOREIGN KEY (exporter_dynamic_code) REFERENCES usitc_country_names(country_dynamic_code),
+  	CONSTRAINT usitc_trade_FK2 FOREIGN KEY (importer_dynamic_code) REFERENCES usitc_country_names(country_dynamic_code),
+  	CONSTRAINT usitc_trade_FK3 FOREIGN KEY (broad_sector_id) REFERENCES usitc_sector_names(broad_sector_id),
+  	CONSTRAINT usitc_trade_FK4 FOREIGN KEY (industry_id) REFERENCES usitc_industry_names(industry_id)
+  	)"
   )
 
   DBI::dbSendQuery(con, "DROP TABLE IF EXISTS usitc_region_names")
@@ -196,30 +268,8 @@ create_schema <- function() {
     "CREATE TABLE usitc_region_names (
   	region_id INTEGER,
   	region_name VARCHAR,
-  	PRIMARY KEY (region_id)
+  	CONSTRAINT usitc_region_names_PK PRIMARY KEY (region_id)
     )"
-  )
-
-  DBI::dbSendQuery(con, "DROP TABLE IF EXISTS usitc_trade")
-
-  DBI::dbSendQuery(
-    con,
-    "CREATE TABLE usitc_trade (
-  	exporter_iso3 CHAR(3),
-  	exporter_dynamic_code VARCHAR(5),
-  	importer_iso3 CHAR(3),
-  	importer_dynamic_code VARCHAR(5),
-  	broad_sector_id INTEGER,
-  	industry_id INTEGER,
-  	year INTEGER,
-  	trade FLOAT,
-  	flag_mirror CHAR(1),
-  	flag_zero CHAR(1),
-  	FOREIGN KEY (exporter_dynamic_code) REFERENCES usitc_country_names(country_dynamic_code),
-  	FOREIGN KEY (importer_dynamic_code) REFERENCES usitc_country_names(country_dynamic_code),
-  	FOREIGN KEY (broad_sector_id) REFERENCES usitc_sector_names(broad_sector_id),
-  	FOREIGN KEY (industry_id) REFERENCES usitc_industry_names(industry_id)
-  	)"
   )
 
   DBI::dbSendQuery(con, "DROP TABLE IF EXISTS usitc_gravity")
@@ -294,14 +344,15 @@ create_schema <- function() {
     gdp_wdi_cap_cur_d DOUBLE,
     gdp_wdi_const_d DOUBLE,
     gdp_wdi_cap_const_d DOUBLE,
-    FOREIGN KEY (dynamic_code_o) REFERENCES usitc_country_names(country_dynamic_code),
-    FOREIGN KEY (dynamic_code_d) REFERENCES usitc_country_names(country_dynamic_code),
-    FOREIGN KEY (region_id_o) REFERENCES usitc_region_names(region_id),
-  	FOREIGN KEY (region_id_d) REFERENCES usitc_region_names(region_id)
+    CONSTRAINT usitc_gravity_PK PRIMARY KEY (year, dynamic_code_o, dynamic_code_d),
+  	CONSTRAINT usitc_gravity_FK1 FOREIGN KEY (dynamic_code_o) REFERENCES usitc_country_names(country_dynamic_code),
+  	CONSTRAINT usitc_gravity_FK2 FOREIGN KEY (dynamic_code_d) REFERENCES usitc_country_names(country_dynamic_code),
+  	CONSTRAINT usitc_gravity_FK3 FOREIGN KEY (region_id_o) REFERENCES usitc_region_names(region_id),
+  	CONSTRAINT usitc_gravity_FK4 FOREIGN KEY (region_id_d) REFERENCES usitc_region_names(region_id)
     )"
   )
 
-  # WTO ----
+  # wto ----
 
   DBI::dbSendQuery(con, "DROP TABLE IF EXISTS wto_country_names")
 
@@ -310,7 +361,7 @@ create_schema <- function() {
     "CREATE TABLE wto_country_names (
     country_iso3 CHAR(3),
     country_name VARCHAR(255),
-    PRIMARY KEY (country_iso3)
+    CONSTRAINT wto_country_names_PK PRIMARY KEY (country_iso3)
     )"
   )
 
@@ -324,8 +375,8 @@ create_schema <- function() {
     exporter_iso3 CHAR(3),
     importer_iso3 CHAR(3),
     trade DOUBLE,
-    FOREIGN KEY (exporter_iso3) REFERENCES wto_country_names(country_iso3),
-    FOREIGN KEY (importer_iso3) REFERENCES wto_country_names(country_iso3)
+    CONSTRAINT wto_trade_FK1 FOREIGN KEY (exporter_iso3) REFERENCES wto_country_names(country_iso3),
+    CONSTRAINT wto_trade_FK2 FOREIGN KEY (IMporter_iso3) REFERENCES wto_country_names(country_iso3)
     )"
   )
 
