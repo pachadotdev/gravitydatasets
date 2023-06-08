@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.340">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>readme</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="README_files/libs/clipboard/clipboard.min.js"></script>
+<script src="README_files/libs/quarto-html/quarto.js"></script>
+<script src="README_files/libs/quarto-html/popper.min.js"></script>
+<script src="README_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="README_files/libs/quarto-html/anchor.min.js"></script>
+<link href="README_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="README_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="README_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="README_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="README_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="gravity-datasets" class="level1">
+<h1>Gravity Datasets</h1>
+<section id="contents" class="level2">
+<h2 class="anchored" data-anchor-id="contents">Contents</h2>
+<ul>
+<li><a href="https://github.com/pachadotdev/gravitydatasets#about">About</a></li>
+<li><a href="https://github.com/pachadotdev/gravitydatasets#acknowledgments">Acknowledgements</a></li>
+<li><a href="https://github.com/pachadotdev/gravitydatasets#motivation">Motivation</a></li>
+<li><a href="https://github.com/pachadotdev/gravitydatasets#sources">Sources</a></li>
+<li><a href="https://github.com/pachadotdev/gravitydatasets#tables">Tables</a></li>
+<li><a href="https://github.com/pachadotdev/gravitydatasets#differences-with-the-original-sources">Differences with the original sources</a></li>
+<li><a href="https://github.com/pachadotdev/gravitydatasets#usage">Usage</a></li>
+<li><a href="https://github.com/pachadotdev/gravitydatasets#installing-the-database-locally">Installing the database locally</a></li>
+<li><a href="https://github.com/pachadotdev/gravitydatasets#additional-configurations">Additional configurations</a></li>
+<li><a href="https://github.com/pachadotdev/gravitydatasets#contributing">Contributing</a></li>
+<li><a href="https://github.com/pachadotdev/gravitydatasets#collaborating">Collaborating</a></li>
+<li><a href="https://github.com/pachadotdev/gravitydatasets#license">License</a></li>
+</ul>
+</section>
+<section id="about" class="level2">
+<h2 class="anchored" data-anchor-id="about">About</h2>
+<p>This <a href="https:://github.com/pachadotdev/gravitydatasets">repository</a> aims at gathering in a single place a set of adapted variables that could be useful to researchers or practitioners that use the structural gravity model of trade. I provide trade flows, as well as geographic, cultural, trade facilitation and macroeconomic variables.</p>
+<p>The tables provided here were reshaped under Cobb’s Normal Form, and in some cases contain corrections that I explain below. The specific sources are the <a href="http://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=8">Gravity database</a> from the Center for Prospective Studies and International Information (CEPII), the <a href="https://www.usitc.gov/data/gravity/itpde.htm">International Trade and Production Database for Estimation (ITPD-E)</a> and the <a href="https://www.usitc.gov/data/gravity/dgd.htm">Dynamic Gravity Database (DGD)</a> from the US International Trade Commission (USITC), and the <a href="https://www.wto.org/english/res_e/reser_e/structural_gravity_e.htm">Structural Gravity Database (SGD)</a> from the World Trade Organization (WTO).</p>
+<p>This is a sub-product, and perhaps the biggest contribution I made during my MA thesis, “NAFTA is the Worst Trade Deal in the History of Trade Deals, Maybe Ever”. Of course, that title took inspiration from a US president. I used the gravity model of trade to simulate the effects of NAFTA on the Canadian, American and Mexican economy (ordered from north to south) at sectoral level (i.e., Agriculture, Mining and Energy, and Manufacturing). I needed to correct some inconsistencies in the data, and I thought that it would be useful to share the results with the community.</p>
+</section>
+<section id="acknowledgments" class="level2">
+<h2 class="anchored" data-anchor-id="acknowledgments">Acknowledgments</h2>
+<p>My MA thesis supervisor, <a href="https://politics.utoronto.ca/faculty/profile/32/">Dr.&nbsp;Victor Falkenheim</a>, was highly supportive and understood that, in order to conduct a reasonable General Equilibrium simulation of NAFTA effects by sectors, I had to care about the internal data consistency. I really thank him for his wise advice and support.</p>
+<p>I also had indirect but valuable inputs from <a href="https://munkschool.utoronto.ca/person/mark-manger">Dr.&nbsp;Mark Manger</a> and <a href="https://www.mcgill.ca/politicalscience/leonardo-baccini">Dr.&nbsp;Leonardo Baccini</a> when discussing the distributional consequences of free trade. Even when they didn’t tell me to use SQL or fight with the data or Cobb’s third formal norm, their emails demanded the need to reshape my datasets to be able to answer some questions coming from their end, such as “when a few industries concentrate trade gains and others experience losses in a positive overall result scenario, does the distribution of gains introduces a political justification to oppose trade at the expense of economic efficiency?”</p>
+</section>
+<section id="motivation" class="level2">
+<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
+<p>The motivation to explore this topic follows from the observed change in US Republicans’ speech. Some clear examples can be obtained from what Republican presidents have said about trade in different decades:</p>
+<blockquote class="blockquote">
+<p>“We should beware of the demagogues who are ready to declare a trade war against our friends — weakening our economy, our national security, and the entire free world— all while cynically waving the American flag.” Ronald Reagan, 40th president of the USA.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>“. . . .I am a Tariff Man. When people or countries come in to raid the great wealth of our Nation, I want them to pay for the privilege of doing so. It will always be the best way to max out our economic power. We are right now taking in $billions in Tariffs. MAKE AMERICA RICH AGAIN” Donald J. Trump, 45th president of the USA. (https://twitter.com/realdonaldtrump/status/1069970500535902208)</p>
+</blockquote>
+</section>
+<section id="sources" class="level2">
+<h2 class="anchored" data-anchor-id="sources">Sources</h2>
+<p>Conte, M., Cotterlaz, P. &amp; Mayer, T. (2021). <em>The CEPII Gravity Database</em>. CEPII Working Paper 2022-05.</p>
+<p>Borchert, Ingo &amp; Larch, Mario &amp; Shikher, Serge &amp; Yotov, Yoto, 2020. <em>The International Trade and Production Database for Estimation (ITPD-E)</em>. School of Economics Working Paper Series 2020-5, LeBow College of Business, Drexel University.</p>
+<p>Gurevich, Tamara &amp; Herman, Peter, 2018. <em>The Dynamic Gravity Dataset: 1948-2016</em>. USITC Working Paper 2018-02-A.</p>
+<p>Larch, Mario &amp; Monteiro, José-Antonio &amp; Piermartini, Roberta &amp; Yotov, Yoto, 2019. <em>On the Effects of GATT/WTO Membership on Trade: They are Positive and Large After All</em>. WTO Staff Working Papers ERSD-2019-09, World Trade Organization (WTO), Economic Research and Statistics Division.</p>
+</section>
+<section id="tables" class="level2">
+<h2 class="anchored" data-anchor-id="tables">Tables</h2>
+<section id="database-diagram" class="level3">
+<h3 class="anchored" data-anchor-id="database-diagram">Database diagram</h3>
+<p>See <a href="https://github.com/pachadotdev/gravitydatasets/blob/main/gravitydatasets-schema.png">here</a>.</p>
+</section>
+<section id="cepii-country-level-information" class="level3">
+<h3 class="anchored" data-anchor-id="cepii-country-level-information">CEPII Country-Level Information</h3>
+<p>Name: <code>cepii_country_information</code></p>
+<p>Source: CEPII, adapted from the World Bank and other sources</p>
+<p>Format: A table with 257 rows and 8 columns</p>
+<table class="table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 83%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">variable</th>
+<th style="text-align: left;">description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">country_id</td>
+<td style="text-align: left;">Combines a country’s ISO3 code with a number identifying potential territorial transformations of the country</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">iso3</td>
+<td style="text-align: left;">ISO3 alphabetic</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">iso3num</td>
+<td style="text-align: left;">ISO3 numeric</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">country</td>
+<td style="text-align: left;">Country name</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">countrylong</td>
+<td style="text-align: left;">Country official name</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">first_year</td>
+<td style="text-align: left;">First year of territorial existence</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">last_year</td>
+<td style="text-align: left;">Last year of territorial existence</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">countrygroup_iso3</td>
+<td style="text-align: left;">Country group (ISO3 alphabetic)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">countrygroup_iso3num</td>
+<td style="text-align: left;">Country group (ISO3 numeric)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">iso2</td>
+<td style="text-align: left;">ISO2 alphabetic</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">heg_iso3_2020</td>
+<td style="text-align: left;">Hegemon (ISO3 alphabetic) if country is a dependency in 2020</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">heg_iso3num_2020</td>
+<td style="text-align: left;">Hegemon (ISO3 numeric) if country is a dependency in 2020</td>
+</tr>
+</tbody>
+</table>
+<p>Description: Allows for a full identification of each country included in the gravity dataset and, if relevant, for a tracking of its territorial changes (splits and merges). Includes one observation for each territorial configuration, mapping the full set of territorial changes that are accounted for in gravity. For example, this dataset includes one observation for West Germany, one for East Germany and one for the unified Germany.</p>
+<p>Details: There are differences with respect to the original Stata version. ISO3 alphabetic codes of length zero were converted to NAs and the attributes (i.e., column descriptions), when missing, were added after reading the original documentation. The dynamic codes were added to the dataset and follow from USITC’s DGD codes.</p>
+</section>
+<section id="cepii-population-source" class="level3">
+<h3 class="anchored" data-anchor-id="cepii-population-source">CEPII Population Source</h3>
+<p>Name: <code>cepii_population_source</code></p>
+<p>Source: CEPII</p>
+<p>Format: A table with 3 rows and 2 columns</p>
+<table class="table">
+<colgroup>
+<col style="width: 43%">
+<col style="width: 56%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">variable</th>
+<th style="text-align: left;">description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">pop_source_id</td>
+<td style="text-align: left;">Population source ID</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pop_source_description</td>
+<td style="text-align: left;">Population source description</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="cepii-gdp-source" class="level3">
+<h3 class="anchored" data-anchor-id="cepii-gdp-source">CEPII GDP Source</h3>
+<p>Name: <code>cepii_gdp_source</code></p>
+<p>Source: CEPII</p>
+<p>Format: A table with 3 rows and 2 columns</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">variable</th>
+<th style="text-align: left;">description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">gdp_source_id</td>
+<td style="text-align: left;">GDP source ID</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gdp_source_description</td>
+<td style="text-align: left;">GDP source description</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="cepii-gravity" class="level3">
+<h3 class="anchored" data-anchor-id="cepii-gravity">CEPII Gravity</h3>
+<p>Name: <code>cepii_gravity</code></p>
+<p>Source: CEPII, adapted from the World Bank and other sources</p>
+<p>Format: A table with 4,428,288 rows and 79 columns for the period 1948-2019:</p>
+<table class="table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 80%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">variable</th>
+<th style="text-align: left;">description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">year</td>
+<td style="text-align: left;">Year</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">country_id_o</td>
+<td style="text-align: left;">Origin country ID</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">country_id_d</td>
+<td style="text-align: left;">Destination country ID</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">iso3_o</td>
+<td style="text-align: left;">Origin ISO3 alphabetic</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">iso3_d</td>
+<td style="text-align: left;">Destination ISO3 alphabetic</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">iso3num_o</td>
+<td style="text-align: left;">Origin ISO3 numeric</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">iso3num_d</td>
+<td style="text-align: left;">Destination ISO3 numeric</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">country_exists_o</td>
+<td style="text-align: left;">1 = Origin country exists</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">country_exists_d</td>
+<td style="text-align: left;">1 = Destination country exists</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gmt_offset_2020_o</td>
+<td style="text-align: left;">Origin GMT offset (hours)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gmt_offset_2020_d</td>
+<td style="text-align: left;">Destination GMT offset (hours)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">distw_harmonic</td>
+<td style="text-align: left;">Population-weighted distance between most populated cities (harmonic mean)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">distw_arithmetic</td>
+<td style="text-align: left;">Population-weighted distance between most populated cities (arithmetic mean)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">distw_harmonic_jh</td>
+<td style="text-align: left;">Population-weighted distance between most populated cities (harmonic mean) by Julian Hinz</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">distw_arithmetic_jh</td>
+<td style="text-align: left;">Population-weighted distance between most populated cities (arithmetic mean) by Julian Hinz</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">dist</td>
+<td style="text-align: left;">Distance between most populated cities, in km</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">main_city_source_o</td>
+<td style="text-align: left;">Source of origin’s most populated city</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">main_city_source_d</td>
+<td style="text-align: left;">Source of destination’s most populated city</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">distcap</td>
+<td style="text-align: left;">Distance between capitals, in km</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">contig</td>
+<td style="text-align: left;">1 = Contiguity</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">diplo_disagreement</td>
+<td style="text-align: left;">UN diplomatic disagreement score</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">scaled_sci_2021</td>
+<td style="text-align: left;">Social connectedness index in 2021</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">comlang_off</td>
+<td style="text-align: left;">1 = Common official or primary language</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">comlang_ethno</td>
+<td style="text-align: left;">1 = Language is spoken by at least 9% of the population</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">comcol</td>
+<td style="text-align: left;">1 = Common colonizer post 1945</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">col45</td>
+<td style="text-align: left;">1 = Pair in colonial relationship post 1945</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">legal_old_o</td>
+<td style="text-align: left;">Origin legal system before transition</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">legal_old_d</td>
+<td style="text-align: left;">Destination legal system before transition</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">legal_new_o</td>
+<td style="text-align: left;">Origin legal system after transition</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">legal_new_d</td>
+<td style="text-align: left;">Destination legal system after transition</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">comleg_pretrans</td>
+<td style="text-align: left;">1 = Common legal origins before transition</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">comleg_posttrans</td>
+<td style="text-align: left;">1 = Common legal origins after transition</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">transition_legalchange</td>
+<td style="text-align: left;">1 = Common legal origin changed since transition</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">comrelig</td>
+<td style="text-align: left;">Common religion index</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">heg_o</td>
+<td style="text-align: left;">1 = Origin is current or former hegemon of destination</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">heg_d</td>
+<td style="text-align: left;">1 = Destination is current or former hegemon of origin</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">col_dep_ever</td>
+<td style="text-align: left;">1 = Pair ever in colonial or dependency relationship</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">col_dep</td>
+<td style="text-align: left;">1 = Pair currently in colonial or dependency relationship</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">col_dep_end_year</td>
+<td style="text-align: left;">Independence date, if col_dep = 1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">col_dep_end_conflict</td>
+<td style="text-align: left;">1 = Independence involved conflict, if col_dep_ever = 1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">empire</td>
+<td style="text-align: left;">Hegemon if sibling = 1 and year &lt; sever_year</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sibling_ever</td>
+<td style="text-align: left;">1 = Pair ever in sibling relationship</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sibling</td>
+<td style="text-align: left;">1 = Pair currently in sibling relationship</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sever_year</td>
+<td style="text-align: left;">Severance year for pairs if sibling == 1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sib_conflict</td>
+<td style="text-align: left;">1 = Pair ever in sibling relationship and conflict with hegemon</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pop_o</td>
+<td style="text-align: left;">Origin Population, total in thousands</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pop_d</td>
+<td style="text-align: left;">Destination Population, total in thousands</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gdp_o</td>
+<td style="text-align: left;">Origin GDP (current thousands US<span class="math inline">\() | |gdp_d |Destination GDP (current thousands US\)</span>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gdpcap_o</td>
+<td style="text-align: left;">Origin GDP per cap (current thousands US<span class="math inline">\() | |gdpcap_d |Destination GDP per cap (current thousands US\)</span>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pop_source_o</td>
+<td style="text-align: left;">Origin Population source</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pop_source_d</td>
+<td style="text-align: left;">Destination Population source</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gdp_source_o</td>
+<td style="text-align: left;">Origin GDP source</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gdp_source_d</td>
+<td style="text-align: left;">Destination GDP source</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gdp_ppp_o</td>
+<td style="text-align: left;">Origin GDP, PPP (current thousands international $)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gdp_ppp_d</td>
+<td style="text-align: left;">Destination GDP, PPP (current thousands international $)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gdpcap_ppp_o</td>
+<td style="text-align: left;">Origin GDP per cap, PPP (current thousands international $)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gdpcap_ppp_d</td>
+<td style="text-align: left;">Destination GDP per cap, PPP (current thousands international <span class="math inline">\() | |pop_pwt_o |Origin Population, total in thousands (PWT) | |pop_pwt_d |Destination Population, total in thousands (PWT) | |gdp_ppp_pwt_o |Origin GDP, current PPP (2011 thousands US\)</span>) (PWT)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gdp_ppp_pwt_d</td>
+<td style="text-align: left;">Destination GDP, current PPP (2011 thousands US$) (PWT)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gatt_o</td>
+<td style="text-align: left;">Origin GATT membership</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gatt_d</td>
+<td style="text-align: left;">Destination GATT membership</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">wto_o</td>
+<td style="text-align: left;">Origin WTO membership</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">wto_d</td>
+<td style="text-align: left;">Destination WTO membership</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">eu_o</td>
+<td style="text-align: left;">1 = Origin is a EU member</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">eu_d</td>
+<td style="text-align: left;">1 = Destination is a EU member</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fta_wto</td>
+<td style="text-align: left;">1 = The country pair is engaged in a regional trade agreement (source: WTO, supplemented by T. Mayer)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fta_wto_raw</td>
+<td style="text-align: left;">1 = The country pair is engaged in a regional trade agreement (source: WTO)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rta_coverage</td>
+<td style="text-align: left;">Coverage of RTA (source: WTO)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rta_type</td>
+<td style="text-align: left;">Type of RTA (source: WTO)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">entry_cost_o</td>
+<td style="text-align: left;">Origin Cost of business start-up procedures (% of GNI per capita)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">entry_cost_d</td>
+<td style="text-align: left;">Destination Cost of business start-up procedures (% of GNI per capita)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">entry_proc_o</td>
+<td style="text-align: left;">Origin Start-up procedures to register a business (number)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">entry_proc_d</td>
+<td style="text-align: left;">Destination Start-up procedures to register a business (number)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">entry_time_o</td>
+<td style="text-align: left;">Origin Time required to start a business (days)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">entry_time_d</td>
+<td style="text-align: left;">Destination Time required to start a business (days)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">entry_tp_o</td>
+<td style="text-align: left;">Origin Days + procedures to start a business</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">entry_tp_d</td>
+<td style="text-align: left;">Destination Days + procedures to start a business</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tradeflow_comtrade_o</td>
+<td style="text-align: left;">Trade flows as reported by the origin, 1000 Current USD (source: UNSD)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tradeflow_comtrade_d</td>
+<td style="text-align: left;">Trade flows as reported by the destination, 1000 Current USD (source: UNSD)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tradeflow_baci</td>
+<td style="text-align: left;">Trade flow, 1000 USD (source: BACI)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">manuf_tradeflow_baci</td>
+<td style="text-align: left;">Trade flow of manufactured goods, 1000 USD (source: BACI)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tradeflow_imf_o</td>
+<td style="text-align: left;">Trade flows as reported by the origin, 1000 Current USD (source: IMF)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tradeflow_imf_d</td>
+<td style="text-align: left;">Trade flows as reported by the destination, 1000 Current USD (source: IMF)</td>
+</tr>
+</tbody>
+</table>
+<p>Description: Each observation is uniquely identified by the combination of the ISO-3 code of the origin country, the ISO-3 code of the destination country and the year. Country pair appears every year, even if one of the countries actually does not exist. However, based on the territorial changes tracked in the countries dataset, we set to missing all variables for country pairs in which at least one of the countries does not exist in a given year. Furthermore, we provide two dummy variables indicating whether the origin and the destination countries exist. These dummies allow users wishing drop non-existing country pairs from the dataset. A few caveats on the identification of countries through country_id must be noted. Firstly, when countries merge, it is the new country or territorial configuration that exists during transition year but not the old country or territorial configuration. As an example DEU.1 (West Germany) has 1989 as last year, not 1990, while DEU.2 (the unified Germany) has 1990 as first year. This is consistent with the construction of underlying variables that varies over time, such as GDP, population, trade. Secondly, since the dataset is square in terms of country_id, there exist cases in which two configurations of the same alphabetic ISO3 code appear bilaterally, e.g. DEU.1 and DEU.2. While DEU.1 and DEU.2 never existed simultaneously, we still keep these null observations to ensure that the final dataset is square.</p>
+<p>Details: The details are the same as for the countries dataset.</p>
+</section>
+<section id="usitc-sector-level-trade" class="level3">
+<h3 class="anchored" data-anchor-id="usitc-sector-level-trade">USITC Sector-Level Trade</h3>
+<p>Name: <code>usitc_trade</code></p>
+<p>Source: USITC, adapted from UN COMTRADE and other sources</p>
+<p>Format: A table with 72,534,869 rows and 10 columns for the period 1986-2020</p>
+<table class="table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 84%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variable name</th>
+<th style="text-align: left;">Variable description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">exporter_iso3</td>
+<td style="text-align: left;">ISO 3-letter alpha code of the exporter</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">exporter_dynamic_code</td>
+<td style="text-align: left;">DGD’s dynamic code of the exporter</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">exporter_name</td>
+<td style="text-align: left;">Name of the exporter</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">importer_iso3</td>
+<td style="text-align: left;">ISO 3-letter alpha code of the importer</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">importer_dynamic_code</td>
+<td style="text-align: left;">DGD’s dynamic code of the importer</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">importer_name</td>
+<td style="text-align: left;">Name of the importer</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">year</td>
+<td style="text-align: left;">Year</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">industry_id</td>
+<td style="text-align: left;">ITPD industry code</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">industry_descr</td>
+<td style="text-align: left;">ITPD industry description</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">broad_sector</td>
+<td style="text-align: left;">Broad sector</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">trade</td>
+<td style="text-align: left;">Trade flows in million of current US dollars</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">flag_mirror</td>
+<td style="text-align: left;">Flag indicator, 1 if trade mirror value is used</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">flag_zero</td>
+<td style="text-align: left;">Flag indicator: <code>p</code> if positive trade, <code>r</code> if the raw data contained zero and `u`` missing (unknown, assigned zero)</td>
+</tr>
+</tbody>
+</table>
+<p>Description: The data goes back to 1986 for Agriculture, and to 1988 for Mining &amp; Energy and Manufacturing. Due to administrative data limitations, the data for Services is not available before to the year 2000. <span class="citation" data-cites="details">@details</span> There are differences with respect to the original CSV file. This version provides a more compact representation of the data, with the following changes:</p>
+<ul>
+<li>The <code>exporter_name</code> and <code>importer_name</code> columns are provided in the <code>country_names</code> table as <code>country_name</code> and can be joined by using the <code>_iso3</code> and <code>_dynamic</code> columns.</li>
+<li>The <code>industry_descr</code> column is provided in the industry names table.</li>
+<li>The <code>broad_sector</code> column is provided in the sector names table and <code>broad_sector_id</code> was created for this version of the table.</li>
+</ul>
+</section>
+<section id="usitc-gravity-variables" class="level3">
+<h3 class="anchored" data-anchor-id="usitc-gravity-variables">USITC Gravity Variables</h3>
+<p>Name: <code>usitc_gravity</code></p>
+<p>Source: USITC, adapted from WTO, UN COMTRADE, National Geographic and other sources, with corrections made for the release</p>
+<p>Format: A table with 1,940,681 rows and 67 columns for the period 1986-2020</p>
+<table class="table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 78%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variable name</th>
+<th style="text-align: left;">Variable description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">year</td>
+<td style="text-align: left;">Year of observation</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">iso3_o</td>
+<td style="text-align: left;">3-digit ISO code of origin country</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dynamic_code_o</td>
+<td style="text-align: left;">Year appropriate 3-digit code of origin country</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">iso3_d</td>
+<td style="text-align: left;">3-digit ISO code of destination country</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dynamic_code_d</td>
+<td style="text-align: left;">Year appropriate 3-digit code of destination country</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">colony_of_destination_ever</td>
+<td style="text-align: left;">Origin country was ever a colony of the destination country</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">colony_of_origin_ever</td>
+<td style="text-align: left;">Destination country was ever a colony of the origin country</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">colony_ever</td>
+<td style="text-align: left;">Country pair has been in a colonial relationship</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">common_colonizer</td>
+<td style="text-align: left;">Country pair has been colonized by a common colonizer</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">common_legal_origin</td>
+<td style="text-align: left;">Country pair shares common legal origin</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">contiguity</td>
+<td style="text-align: left;">Country pair shares a common border</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">distance</td>
+<td style="text-align: left;">Population weighted distance between country pair</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">member_gatt_o</td>
+<td style="text-align: left;">Origin country is a General Agreement on Tariffs and Trade member</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">member_wto_o</td>
+<td style="text-align: left;">Origin country is a World Trade Organization member</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">member_eu_o</td>
+<td style="text-align: left;">Origin country is a European Union member</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">member_gatt_d</td>
+<td style="text-align: left;">Destination country is a General Agreement on Tariffs and Trade member</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">member_wto_d</td>
+<td style="text-align: left;">Destination country is a World Trade Organization member</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">member_eu_d</td>
+<td style="text-align: left;">Destination country is a European Union member</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">member_gatt_joint</td>
+<td style="text-align: left;">Country pair are both members of the General Agreement on Tariffs and Trade</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">member_wto_joint</td>
+<td style="text-align: left;">Country pair are both members of the World Trade Organization</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">member_eu_joint</td>
+<td style="text-align: left;">Country pair are both members of the European Union</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">lat_o</td>
+<td style="text-align: left;">Latitude coordinate of origin country</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">lng_o</td>
+<td style="text-align: left;">Longitude coordinate of origin country</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">lat_d</td>
+<td style="text-align: left;">Latitude coordinate of destination country</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">lng_d</td>
+<td style="text-align: left;">Longitude coordinate of destination country</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">landlocked_o</td>
+<td style="text-align: left;">Origin country is landlocked</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">island_o</td>
+<td style="text-align: left;">Origin country is an island</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">region_id_o</td>
+<td style="text-align: left;">Geographic region of origin country</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">landlocked_d</td>
+<td style="text-align: left;">Destination country is landlocked</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">island_d</td>
+<td style="text-align: left;">Destination country is an island</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">region_id_d</td>
+<td style="text-align: left;">Geographic region of destination country</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">agree_pta_goods</td>
+<td style="text-align: left;">Country pair is in at least one active preferential trade agreement covering goods</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">agree_pta_services</td>
+<td style="text-align: left;">Country pair is in at least one active preferential trade agreement covering services</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">agree_fta</td>
+<td style="text-align: left;">Country pair is in at least one free trade agreement</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">agree_eia</td>
+<td style="text-align: left;">Country pair is in at least one economic integration agreement</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">agree_cu</td>
+<td style="text-align: left;">Country pair is in at least one customs union</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">agree_psa</td>
+<td style="text-align: left;">Country pair is in at least one partial scope agreement</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">agree_fta_eia</td>
+<td style="text-align: left;">Country pair is in at least one free trade agreement and at least one economic integration agreement</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">agree_cu_eia</td>
+<td style="text-align: left;">Country pair is in at least one customs union and at least one economic integration agreement</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">agree_pta</td>
+<td style="text-align: left;">Country pair is in at least one active preferential trade agreement covering goods</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">capital_const_d</td>
+<td style="text-align: left;">Capital stock at constant prices of destination country</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">capital_const_o</td>
+<td style="text-align: left;">Capital stock at constant prices of origin country</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">capital_cur_d</td>
+<td style="text-align: left;">Capital stock at current PPP of destination country</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">capital_cur_o</td>
+<td style="text-align: left;">Capital stock at current PPP of origin country</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gdp_pwt_const_d</td>
+<td style="text-align: left;">Real, inflation-adjusted, PPP-adjusted GDP of destination country (PWT)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gdp_pwt_const_o</td>
+<td style="text-align: left;">Real, inflation-adjusted, PPP-adjusted GDP of origin country (PWT)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gdp_pwt_cur_d</td>
+<td style="text-align: left;">Real, current, PPP-adjusted GDP of destination country (PWT)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gdp_pwt_cur_o</td>
+<td style="text-align: left;">Real, current, PPP-adjusted GDP of origin country (PWT)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pop_d</td>
+<td style="text-align: left;">Population of destination country</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pop_o</td>
+<td style="text-align: left;">Population of origin country</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hostility_level_o</td>
+<td style="text-align: left;">Level of the origin/destination country’s hostility toward the destination country</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hostility_level_d</td>
+<td style="text-align: left;">Level of the origin/destination country’s hostility toward the origin country</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">common_language</td>
+<td style="text-align: left;">Residents of country pair speak at least one common language</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">polity_o</td>
+<td style="text-align: left;">Polity (political stability) score of origin country</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">polity_d</td>
+<td style="text-align: left;">Polity (political stability) score of destination country</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sanction_threat</td>
+<td style="text-align: left;">There exists a threat of sanction between one country in a record towards the other</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sanction_threat_trade</td>
+<td style="text-align: left;">There exists a threat of trade sanction between one country in a record towards the other</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sanction_imposition</td>
+<td style="text-align: left;">There exists a sanction between one country in a record towards the other</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sanction_imposition_trade</td>
+<td style="text-align: left;">There exists a trade sanction between one country in a record towards the other</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gdp_wdi_cur_o</td>
+<td style="text-align: left;">Nominal GDP of origin country (WDI)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gdp_wdi_cap_cur_o</td>
+<td style="text-align: left;">Nominal GDP per capita of origin country (WDI)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gdp_wdi_const_o</td>
+<td style="text-align: left;">Real, current, PPP-adjusted GDP of origin country (PWT)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gdp_wdi_cap_const_o</td>
+<td style="text-align: left;">Real GDP per capita of origin country (WDI)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gdp_wdi_cur_d</td>
+<td style="text-align: left;">Nominal GDP of destination country (WDI)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gdp_wdi_cap_cur_d</td>
+<td style="text-align: left;">Nominal GDP per capita of destination country (WDI)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gdp_wdi_const_d</td>
+<td style="text-align: left;">Real, current, PPP-adjusted GDP of destination country (PWT)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gdp_wdi_cap_const_d</td>
+<td style="text-align: left;">Real GDP per capita of destination country (WDI)</td>
+</tr>
+</tbody>
+</table>
+<p>Description: The data goes back to 1986 and is suited to join with the <code>trade</code> table.</p>
+<p>Details: There are differences with respect to the original CSV files. This version provides a more compact representation of the data, with the following changes:</p>
+<ul>
+<li>Starts in 1986 instead of 1948.</li>
+<li>Is limited to ISO codes contained in the <code>trade</code> table.</li>
+<li>The <code>region_origin</code> and <code>region_destination</code> columns are provided in the <code>region names</code> table as <code>region_name</code> and can be joined by using the <code>region_id_</code> columns.</li>
+</ul>
+</section>
+<section id="usitc-derived-country-names" class="level3">
+<h3 class="anchored" data-anchor-id="usitc-derived-country-names">USITC-Derived Country Names</h3>
+<p>Name: <code>usitc_country_names</code></p>
+<p>Source: Own creation, adapted from the original DGD</p>
+<p>Format: A table with 267 rows and 3 columns</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variable name</th>
+<th style="text-align: left;">Variable description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">country_iso3</td>
+<td style="text-align: left;">ISO 3-letter alpha code of the country</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">country_dynamic_code</td>
+<td style="text-align: left;">DGD’s dynamic country code of the country</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">country_name</td>
+<td style="text-align: left;">Name of the country</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="usitc-derived-industry-names" class="level3">
+<h3 class="anchored" data-anchor-id="usitc-derived-industry-names">USITC-Derived Industry Names</h3>
+<p>Name: <code>usitc_industry_names</code></p>
+<p>Source: Own creation, adapted from the original ITPD-E</p>
+<p>Format: A table with 170 rows and 2 columns</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variable name</th>
+<th style="text-align: left;">Variable description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">industry_id</td>
+<td style="text-align: left;">ITPD industry code</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">industry_descr</td>
+<td style="text-align: left;">ITPD industry description</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ustic-derived-sector-names" class="level3">
+<h3 class="anchored" data-anchor-id="ustic-derived-sector-names">USTIC-Derived Sector Names</h3>
+<p>Name: <code>usitc_sector_names</code></p>
+<p>Source: Own creation, adapted from the original ITPD-E</p>
+<p>Format: A table with 4 rows and 2 columns</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variable name</th>
+<th style="text-align: left;">Variable description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">broad_sector_id</td>
+<td style="text-align: left;">Broad sector code</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">broad_sector</td>
+<td style="text-align: left;">Broad sector</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="usitc-derived-region-names" class="level3">
+<h3 class="anchored" data-anchor-id="usitc-derived-region-names">USITC-Derived Region Names</h3>
+<p>Name usitc_region_names</p>
+<p>Source Own creation, adapted from the original DGD</p>
+<p>Format: A table with 15 rows and 2 columns</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variable name</th>
+<th style="text-align: left;">Variable description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">region_id</td>
+<td style="text-align: left;">Region code</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">region</td>
+<td style="text-align: left;">Region name</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="wto-country-names" class="level3">
+<h3 class="anchored" data-anchor-id="wto-country-names">WTO Country Names</h3>
+<p>Name wto_country_names</p>
+<p>Source: Own creation, adapted from the original SGD</p>
+<p>Format: A table with 232 rows and 2 columns</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">variable</th>
+<th style="text-align: left;">description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">country_iso3</td>
+<td style="text-align: left;">Country ISO3 alphabetic</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">country_name</td>
+<td style="text-align: left;">Country name</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="wto-trade" class="level3">
+<h3 class="anchored" data-anchor-id="wto-trade">WTO Trade</h3>
+<p>Name: <code>wto_trade</code></p>
+<p>Source: WTO</p>
+<p>Format: A table with 972,692 rows and 5 columns for the period 1980-2016</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">variable</th>
+<th style="text-align: left;">description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">pair_id</td>
+<td style="text-align: left;">Exporter-Importer index</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">year</td>
+<td style="text-align: left;">Year of observation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">exporter_iso3</td>
+<td style="text-align: left;">Exporter ISO3 alphabetic</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">importer_iso3</td>
+<td style="text-align: left;">Importer ISO3 alphabetic</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">trade</td>
+<td style="text-align: left;">Trade flows in current US dollars</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="differences-with-the-original-sources." class="level2">
+<h2 class="anchored" data-anchor-id="differences-with-the-original-sources.">Differences with the original sources.</h2>
+<p>All the codes to implement the changes are in the <code>code/</code> folder.</p>
+<section id="cepii" class="level3">
+<h3 class="anchored" data-anchor-id="cepii">CEPII</h3>
+<p>The key differences are:</p>
+<ul>
+<li>Fixes inconsistent indexing in the legal origins columns in the <code>cepii_gravity</code> table to match with the <code>cepii_legal_origin</code> table correctly.</li>
+<li>Includes explanations for the abbreviations (i.e., Customs Union (CU) instead of just CU for the RTA types)</li>
+<li>Removes Malaysia+Singapore in the country information table because it has no ISO-3 code and there is no trade or gravity information for it.</li>
+<li>Includes a dynamic ISO-3 code to be able to create primary keys, this is similar to the USITC dataset buw we added the code ANT.X for the Netherland Antilles + Aruba up to 1986.</li>
+</ul>
+<p>Some changes that applied to Gravity V202102 but not to V202211 because those were corrected upstream:</p>
+<ul>
+<li>The RTA types equal to 8 were replaced by NAs, because those do not provide a description, are not aligned with the WTO classification, and do not allow to create a foreign key.</li>
+</ul>
+</section>
+<section id="usitc" class="level3">
+<h3 class="anchored" data-anchor-id="usitc">USITC</h3>
+<p>The key differences are:</p>
+<ul>
+<li>Fixes duplicated ISO3 code + Dynamic code for Cambodia and West Samoa in the <code>usitc_country_names</code> table</li>
+<li>Fixes duplicated label “south_east_asia” vs “suth_east_asia” in the <code>usitc_region_names</code> table</li>
+<li>Fixes inconsistencies in the <code>usitc_gravity</code> table</li>
+</ul>
+<p>The last point deserves an example. See the differences in the <code>common_colonizer</code> variable for Argentina-Chile-Peru and Spain. This variable should be the same, for example, for ARG-CHL or CHL-ARG, but it’s not in the original dataset.</p>
+<pre><code>&gt; tbl(con, "usitc_gravity") %&gt;% 
++   filter(iso3_o == "ARG", iso3_d %in% c("CHL", "ESP", "PER"), year == 2015) %&gt;%
++   select(iso3_o, iso3_d, colony_of_origin_ever, colony_of_destination_ever, colony_ever, common_colonizer)
+# Source:   SQL [3 x 6]
+# Database: postgres  [pacha@localhost:5432/gravitydatasets]
+  iso3_o iso3_d colony_of_origin_ever colony_of_destination_ever colony_ever common_colonizer
+  &lt;chr&gt;  &lt;chr&gt;                  &lt;int&gt;                      &lt;int&gt;       &lt;int&gt;            &lt;int&gt;
+1 ARG    CHL                        0                          0           0                0
+2 ARG    ESP                        0                          1           1                0
+3 ARG    PER                        0                          0           0                0
+
+&gt; tbl(con, "usitc_gravity") %&gt;% 
++   filter(iso3_d == "ARG", iso3_o %in% c("CHL", "ESP", "PER"), year == 2015) %&gt;%
++   select(iso3_o, iso3_d, colony_of_origin_ever, colony_of_destination_ever, colony_ever, common_colonizer)
+# Source:   SQL [3 x 6]
+# Database: postgres  [pacha@localhost:5432/gravitydatasets]
+  iso3_o iso3_d colony_of_origin_ever colony_of_destination_ever colony_ever common_colonizer
+  &lt;chr&gt;  &lt;chr&gt;                  &lt;int&gt;                      &lt;int&gt;       &lt;int&gt;            &lt;int&gt;
+1 CHL    ARG                        0                          0           0                1
+2 ESP    ARG                        1                          0           1                0
+3 PER    ARG                        0                          0           0                1</code></pre>
+<p>I corrected this by using the gravity table itself in two ways:</p>
+<ul>
+<li>By binding rows on a pairwise basis for all symmetrical variables (i.e., <code>common_colonizer</code>) and obtained the maximum for each pair.</li>
+<li>By obtaining a full join on a pairwise basis for all non-symmetrical variables (i.e., <code>colony_of_origin_ever</code>) and obtained the maximum for each pair.</li>
+</ul>
+<p>To check this I ran some queries to verify, for example, that the populations for CHL-ESP are around <code>c(20,40)</code> and not <code>c(40,40)</code> (i.e., Spain doubles the population of Chile), and that for the same pair <code>colony_of_origin_ever = 0</code> but for ESP-CHL <code>colony_of_origin_ever = 1</code>.</p>
+</section>
+<section id="wto" class="level3">
+<h3 class="anchored" data-anchor-id="wto">WTO</h3>
+<p>No modification besides adding the full country names in a separate table from trade.</p>
+</section>
+</section>
+<section id="usage" class="level2">
+<h2 class="anchored" data-anchor-id="usage">Usage</h2>
+<p>Estimating the gravity model of trade with exporter/importer time fixed effects for 4 sectors:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install_github("r-dbi/RPostgres") # optional: use the cpp11-based version</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RPostgres)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fixest)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Postgres</span>(),</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">user =</span> <span class="fu">Sys.getenv</span>(<span class="st">"LOCAL_SQL_USR"</span>),</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">password =</span> <span class="fu">Sys.getenv</span>(<span class="st">"LOCAL_SQL_PWD"</span>),</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">dbname =</span> <span class="st">"gravitydatasets"</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">host =</span> <span class="st">"localhost"</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># run one model per sector</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">map</span>(</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl</span>(con, <span class="st">"usitc_sector_names"</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(broad_sector_id),</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>(s) {</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(s)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    yrs <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">2005</span>, <span class="dv">2015</span>, <span class="at">by =</span> <span class="dv">5</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    d <span class="ot">&lt;-</span> <span class="fu">tbl</span>(con, <span class="st">"usitc_trade"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(year <span class="sc">%in%</span> yrs, broad_sector_id <span class="sc">==</span> s) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(year, exporter_iso3, importer_iso3, broad_sector_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">trade =</span> <span class="fu">sum</span>(trade, <span class="at">na.rm =</span> T)) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>      <span class="fu">inner_join</span>(</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        <span class="fu">tbl</span>(con, <span class="st">"usitc_gravity"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>          <span class="fu">filter</span>(year <span class="sc">%in%</span> yrs) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>          <span class="fu">select</span>(iso3_o, iso3_d, contiguity, common_language, colony_ever, distance),</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"exporter_iso3"</span> <span class="ot">=</span> <span class="st">"iso3_o"</span>, <span class="st">"importer_iso3"</span> <span class="ot">=</span> <span class="st">"iso3_d"</span>)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>      <span class="fu">collect</span>()</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    d <span class="ot">&lt;-</span> d <span class="sc">%&gt;%</span> </span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>        <span class="at">etfe =</span> <span class="fu">paste</span>(exporter_iso3, year, <span class="at">sep =</span> <span class="st">"_"</span>),</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>        <span class="at">itfe =</span> <span class="fu">paste</span>(importer_iso3, year, <span class="at">sep =</span> <span class="st">"_"</span>)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">feglm</span>(trade <span class="sc">~</span> contiguity <span class="sc">+</span> common_language <span class="sc">+</span> colony_ever <span class="sc">+</span> </span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>            <span class="fu">log</span>(distance) <span class="sc">|</span> etfe <span class="sc">+</span> itfe,</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>          <span class="at">family =</span> <span class="fu">quasipoisson</span>(),</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> d)</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="fu">dbDisconnect</span>(con)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(models)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">1</span>]]</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>GLM estimation, family <span class="ot">=</span> quasipoisson, Dep. Var.<span class="sc">:</span> trade</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>Observations<span class="sc">:</span> <span class="dv">243</span>,<span class="dv">259</span> </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>Fixed<span class="sc">-</span>effects<span class="sc">:</span> etfe<span class="sc">:</span> <span class="dv">666</span>,  itfe<span class="sc">:</span> <span class="dv">685</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>Standard<span class="sc">-</span>errors<span class="sc">:</span> <span class="fu">Clustered</span> (etfe) </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                 Estimate Std. Error   t value   <span class="fu">Pr</span>(<span class="sc">&gt;</span><span class="er">|</span>t<span class="sc">|</span>)    </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>contiguity      <span class="sc">-</span><span class="fl">1.100653</span>   <span class="fl">0.095092</span> <span class="sc">-</span><span class="fl">11.57462</span>  <span class="sc">&lt;</span> <span class="fl">2.2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>common_language  <span class="fl">0.909522</span>   <span class="fl">0.093396</span>   <span class="fl">9.73833</span>  <span class="sc">&lt;</span> <span class="fl">2.2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>colony_ever     <span class="sc">-</span><span class="fl">0.580546</span>   <span class="fl">0.123115</span>  <span class="sc">-</span><span class="fl">4.71548</span> <span class="fl">2.9394e-06</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(distance)   <span class="sc">-</span><span class="fl">2.290567</span>   <span class="fl">0.049593</span> <span class="sc">-</span><span class="fl">46.18709</span>  <span class="sc">&lt;</span> <span class="fl">2.2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>Signif. codes<span class="sc">:</span>  <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>                                           </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  Squared Cor.<span class="sc">:</span> <span class="fl">0.995063</span>                   </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">2</span>]]</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>GLM estimation, family <span class="ot">=</span> quasipoisson, Dep. Var.<span class="sc">:</span> trade</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>Observations<span class="sc">:</span> <span class="dv">392</span>,<span class="dv">413</span> </span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>Fixed<span class="sc">-</span>effects<span class="sc">:</span> etfe<span class="sc">:</span> <span class="dv">699</span>,  itfe<span class="sc">:</span> <span class="dv">699</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>Standard<span class="sc">-</span>errors<span class="sc">:</span> <span class="fu">Clustered</span> (etfe) </span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>                 Estimate Std. Error   t value   <span class="fu">Pr</span>(<span class="sc">&gt;</span><span class="er">|</span>t<span class="sc">|</span>)    </span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>contiguity      <span class="sc">-</span><span class="fl">0.607763</span>   <span class="fl">0.066653</span>  <span class="sc">-</span><span class="fl">9.11825</span>  <span class="sc">&lt;</span> <span class="fl">2.2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>common_language  <span class="fl">1.017510</span>   <span class="fl">0.122499</span>   <span class="fl">8.30624</span> <span class="fl">5.1286e-16</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>colony_ever     <span class="sc">-</span><span class="fl">0.349214</span>   <span class="fl">0.095491</span>  <span class="sc">-</span><span class="fl">3.65703</span> <span class="fl">2.7435e-04</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(distance)   <span class="sc">-</span><span class="fl">1.232183</span>   <span class="fl">0.079635</span> <span class="sc">-</span><span class="fl">15.47282</span>  <span class="sc">&lt;</span> <span class="fl">2.2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>Signif. codes<span class="sc">:</span>  <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>                                           </span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  Squared Cor.<span class="sc">:</span> <span class="fl">0.993544</span>                   </span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">3</span>]]</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>GLM estimation, family <span class="ot">=</span> quasipoisson, Dep. Var.<span class="sc">:</span> trade</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>Observations<span class="sc">:</span> <span class="dv">183</span>,<span class="dv">063</span> </span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>Fixed<span class="sc">-</span>effects<span class="sc">:</span> etfe<span class="sc">:</span> <span class="dv">658</span>,  itfe<span class="sc">:</span> <span class="dv">682</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>Standard<span class="sc">-</span>errors<span class="sc">:</span> <span class="fu">Clustered</span> (etfe) </span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>                 Estimate Std. Error   t value  <span class="fu">Pr</span>(<span class="sc">&gt;</span><span class="er">|</span>t<span class="sc">|</span>)    </span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>contiguity      <span class="sc">-</span><span class="fl">1.288772</span>   <span class="fl">0.104207</span> <span class="sc">-</span><span class="fl">12.36742</span> <span class="sc">&lt;</span> <span class="fl">2.2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>common_language  <span class="fl">1.346403</span>   <span class="fl">0.132482</span>  <span class="fl">10.16290</span> <span class="sc">&lt;</span> <span class="fl">2.2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>colony_ever     <span class="sc">-</span><span class="fl">0.288555</span>   <span class="fl">0.222484</span>  <span class="sc">-</span><span class="fl">1.29697</span>    <span class="fl">0.1951</span>    </span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(distance)   <span class="sc">-</span><span class="fl">2.298211</span>   <span class="fl">0.074100</span> <span class="sc">-</span><span class="fl">31.01505</span> <span class="sc">&lt;</span> <span class="fl">2.2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>Signif. codes<span class="sc">:</span>  <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>                                           </span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>  Squared Cor.<span class="sc">:</span> <span class="fl">0.992104</span>                   </span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">4</span>]]</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>GLM estimation, family <span class="ot">=</span> quasipoisson, Dep. Var.<span class="sc">:</span> trade</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>Observations<span class="sc">:</span> <span class="dv">46</span>,<span class="dv">359</span> </span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>Fixed<span class="sc">-</span>effects<span class="sc">:</span> etfe<span class="sc">:</span> <span class="dv">578</span>,  itfe<span class="sc">:</span> <span class="dv">579</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>Standard<span class="sc">-</span>errors<span class="sc">:</span> <span class="fu">Clustered</span> (etfe) </span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>                 Estimate Std. Error    t value  <span class="fu">Pr</span>(<span class="sc">&gt;</span><span class="er">|</span>t<span class="sc">|</span>)    </span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>contiguity      <span class="sc">-</span><span class="fl">2.671951</span>   <span class="fl">0.183679</span> <span class="sc">-</span><span class="fl">14.546876</span> <span class="sc">&lt;</span> <span class="fl">2.2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>common_language  <span class="fl">1.612855</span>   <span class="fl">0.127482</span>  <span class="fl">12.651606</span> <span class="sc">&lt;</span> <span class="fl">2.2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>colony_ever      <span class="fl">0.139054</span>   <span class="fl">0.170712</span>   <span class="fl">0.814552</span>   <span class="fl">0.41566</span>    </span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(distance)   <span class="sc">-</span><span class="fl">2.267021</span>   <span class="fl">0.081151</span> <span class="sc">-</span><span class="fl">27.935858</span> <span class="sc">&lt;</span> <span class="fl">2.2e-16</span> <span class="sc">**</span><span class="er">*</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>Signif. codes<span class="sc">:</span>  <span class="dv">0</span> <span class="st">'***'</span> <span class="fl">0.001</span> <span class="st">'**'</span> <span class="fl">0.01</span> <span class="st">'*'</span> <span class="fl">0.05</span> <span class="st">'.'</span> <span class="fl">0.1</span> <span class="st">' '</span> <span class="dv">1</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>                                           </span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>  Squared Cor.<span class="sc">:</span> <span class="fl">0.998325</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="installing-the-database-locally" class="level2">
+<h2 class="anchored" data-anchor-id="installing-the-database-locally">Installing the database locally</h2>
+<p>You need PostgreSQL. An excellent guide is provided by <a href="https://www.digitalocean.com/community/tutorials/how-to-install-postgresql-on-ubuntu-22-04-quickstart">DigitalOcean</a>.</p>
+<p>Download the <a href="https://github.com/pachadotdev/gravitydatasets/releases/download/v0.4/gravitydatasets.sql">current version</a>, and then from the command line create a SQL database and restore the downloaded dump.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">createdb</span> gravitydatasets</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pg_restore</span> gravitydatasets.sql <span class="at">-d</span> gravitydatasets</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="additional-configurations" class="level2">
+<h2 class="anchored" data-anchor-id="additional-configurations">Additional configurations</h2>
+<p>In order to maximize PostgreSQL performance, I obtained this configuration from pgtune.leopard.in.ua:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a># DB Version: <span class="dv">14</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a># OS <span class="kw">Type</span>: linux</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a># DB <span class="kw">Type</span>: desktop</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a># Total Memory (RAM): <span class="dv">16</span> GB</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a># CPUs num: <span class="dv">8</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a># Connections num: <span class="dv">20</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a># <span class="kw">Data</span> <span class="kw">Storage</span>: ssd</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">SYSTEM</span> <span class="kw">SET</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a> max_connections <span class="op">=</span> <span class="st">'20'</span>;</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">SYSTEM</span> <span class="kw">SET</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a> shared_buffers <span class="op">=</span> <span class="st">'1GB'</span>;</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">SYSTEM</span> <span class="kw">SET</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a> effective_cache_size <span class="op">=</span> <span class="st">'4GB'</span>;</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">SYSTEM</span> <span class="kw">SET</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a> maintenance_work_mem <span class="op">=</span> <span class="st">'1GB'</span>;</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">SYSTEM</span> <span class="kw">SET</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a> checkpoint_completion_target <span class="op">=</span> <span class="st">'0.9'</span>;</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">SYSTEM</span> <span class="kw">SET</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a> wal_buffers <span class="op">=</span> <span class="st">'16MB'</span>;</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">SYSTEM</span> <span class="kw">SET</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a> default_statistics_target <span class="op">=</span> <span class="st">'100'</span>;</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">SYSTEM</span> <span class="kw">SET</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a> random_page_cost <span class="op">=</span> <span class="st">'1.1'</span>;</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">SYSTEM</span> <span class="kw">SET</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a> effective_io_concurrency <span class="op">=</span> <span class="st">'200'</span>;</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">SYSTEM</span> <span class="kw">SET</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a> work_mem <span class="op">=</span> <span class="st">'10922kB'</span>;</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">SYSTEM</span> <span class="kw">SET</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a> min_wal_size <span class="op">=</span> <span class="st">'100MB'</span>;</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">SYSTEM</span> <span class="kw">SET</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a> max_wal_size <span class="op">=</span> <span class="st">'2GB'</span>;</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">SYSTEM</span> <span class="kw">SET</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a> max_worker_processes <span class="op">=</span> <span class="st">'8'</span>;</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">SYSTEM</span> <span class="kw">SET</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a> max_parallel_workers_per_gather <span class="op">=</span> <span class="st">'4'</span>;</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">SYSTEM</span> <span class="kw">SET</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a> max_parallel_workers <span class="op">=</span> <span class="st">'8'</span>;</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">SYSTEM</span> <span class="kw">SET</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a> max_parallel_maintenance_workers <span class="op">=</span> <span class="st">'4'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This must be inserted by using the <code>postgres</code> user (i.e., <code>sudo -i -u postgres &amp;&amp; psql</code>).</p>
+</section>
+<section id="contributing" class="level2">
+<h2 class="anchored" data-anchor-id="contributing">Contributing</h2>
+<p>Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.</p>
+<p>This is run as an independent project, if this was useful for you, please consider <a href="https://github.com/sponsors/pachadotdev">sponsoring</a> or <a href="https://buymeacoffee.com/pacha">donating</a>.</p>
+</section>
+<section id="collaborating" class="level2">
+<h2 class="anchored" data-anchor-id="collaborating">Collaborating</h2>
+<p>I am really interested in the gravity model of trade. If you are working on this topic, please reach out to me, I would love to collaborate.</p>
+</section>
+<section id="license" class="level2">
+<h2 class="anchored" data-anchor-id="license">License</h2>
+<p><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC-BY-NC-SA-4.0</a></p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

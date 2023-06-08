@@ -17,7 +17,7 @@
 
 ## About
 
-This repository aims at gathering in a single place a set of adapted variables that could be useful to researchers or practitioners that use the structural gravity model of trade. I provide trade flows, as well as geographic, cultural, trade facilitation and macroeconomic variables.
+This [repository](https:://github.com/pachadotdev/gravitydatasets) aims at gathering in a single place a set of adapted variables that could be useful to researchers or practitioners that use the structural gravity model of trade. I provide trade flows, as well as geographic, cultural, trade facilitation and macroeconomic variables.
 
 The tables provided here were reshaped under Cobb's Normal Form, and in some cases contain corrections that I explain below. The specific sources are the [Gravity database](http://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=8) from the Center for Prospective Studies and International Information (CEPII), the [International Trade and Production Database for Estimation (ITPD-E)](https://www.usitc.gov/data/gravity/itpde.htm) and the [Dynamic Gravity Database (DGD)](https://www.usitc.gov/data/gravity/dgd.htm) from the US International Trade Commission (USITC), and the [Structural Gravity Database (SGD)](https://www.wto.org/english/res_e/reser_e/structural_gravity_e.htm) from the World Trade Organization (WTO).
 
