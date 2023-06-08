@@ -54,6 +54,10 @@ Larch, Mario & Monteiro, José-Antonio & Piermartini, Roberta & Yotov, Yoto, 201
 
 ## Tables
 
+### Database diagram
+
+See [here](https://github.com/pachadotdev/gravitydatasets/blob/main/gravitydatasets-schema.png).
+
 ### CEPII Country-Level Information
 
 Name: `cepii_country_information`
