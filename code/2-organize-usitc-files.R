@@ -3,23 +3,19 @@ library(readr)
 library(dplyr)
 library(tidyr)
 library(purrr)
-
-try(dir.create("dev/finp", recursive = T))
-try(dir.create("dev/fout", recursive = T))
+library(RPostgres)
 
 url <- "https://www.usitc.gov/data/gravity/itpd_e/itpd_e_r02.zip"
 url2 <- "https://www.usitc.gov/data/gravity/dgd_docs/release_2.1_1948_1999.zip"
 url3 <- "https://www.usitc.gov/data/gravity/dgd_docs/release_2.1_2000_2019.zip"
 
-finp <- "dev/finp/"
-fout <- "dev/fout/"
+finp <- "finp/"
 
 zip <- gsub(".*/", finp, url)
 zip2 <- gsub(".*/", finp, url2)
 zip3 <- gsub(".*/", finp, url3)
 
 try(dir.create(finp, recursive = T))
-try(dir.create(fout, recursive = T))
 
 if (!file.exists(zip)) {
   try(download.file(url, zip, method = "wget", quiet = T))
@@ -115,9 +111,74 @@ trade <- trade %>%
 #
 # trade2
 
-write_tsv(country_names, paste0(fout, "usitc_country_names.tsv"), na = "")
-write_tsv(industry_names, paste0(fout, "usitc_industry_names.tsv"), na = "")
-write_tsv(sector_names, paste0(fout, "usitc_sector_names.tsv"), na = "")
+con <- dbConnect(
+  Postgres(),
+  user = Sys.getenv("LOCAL_SQL_USR"),
+  password = Sys.getenv("LOCAL_SQL_PWD"),
+  dbname = "gravitydatasets",
+  host = "localhost"
+)
+
+DBI::dbSendQuery(con, "DROP TABLE IF EXISTS usitc_country_names")
+
+DBI::dbSendQuery(
+  con,
+  "CREATE TABLE usitc_country_names (
+  	country_iso3 CHAR(3),
+	  country_dynamic_code VARCHAR(5),
+  	country_name VARCHAR,
+  	CONSTRAINT usitc_country_names_PK PRIMARY KEY (country_dynamic_code)
+    )"
+)
+
+DBI::dbSendQuery(con, "DROP TABLE IF EXISTS usitc_industry_names")
+
+DBI::dbSendQuery(
+  con,
+  "CREATE TABLE usitc_industry_names (
+  	industry_id INTEGER,
+	  industry_descr VARCHAR,
+	  CONSTRAINT usitc_industry_names_PK PRIMARY KEY (industry_id)
+    )"
+)
+
+DBI::dbSendQuery(con, "DROP TABLE IF EXISTS usitc_sector_names")
+
+DBI::dbSendQuery(
+  con,
+  "CREATE TABLE usitc_sector_names (
+  	broad_sector_id INTEGER,
+	  broad_sector VARCHAR,
+	  CONSTRAINT usitc_sector_names_PK PRIMARY KEY (broad_sector_id)
+    )"
+)
+
+DBI::dbSendQuery(con, "DROP TABLE IF EXISTS usitc_trade")
+
+DBI::dbSendQuery(
+  con,
+  "CREATE TABLE usitc_trade (
+    year INTEGER,
+  	exporter_iso3 CHAR(3),
+  	exporter_dynamic_code VARCHAR(5),
+  	importer_iso3 CHAR(3),
+  	importer_dynamic_code VARCHAR(5),
+  	broad_sector_id INTEGER,
+  	industry_id INTEGER,
+  	trade FLOAT,
+  	flag_mirror CHAR(1),
+  	flag_zero CHAR(1),
+    CONSTRAINT usitc_trade_PK PRIMARY KEY (exporter_dynamic_code, importer_dynamic_code, industry_id, year),
+  	CONSTRAINT usitc_trade_FK1 FOREIGN KEY (exporter_dynamic_code) REFERENCES usitc_country_names(country_dynamic_code),
+  	CONSTRAINT usitc_trade_FK2 FOREIGN KEY (importer_dynamic_code) REFERENCES usitc_country_names(country_dynamic_code),
+  	CONSTRAINT usitc_trade_FK3 FOREIGN KEY (broad_sector_id) REFERENCES usitc_sector_names(broad_sector_id),
+  	CONSTRAINT usitc_trade_FK4 FOREIGN KEY (industry_id) REFERENCES usitc_industry_names(industry_id)
+  	)"
+)
+
+dbWriteTable(con, "usitc_country_names", country_names, append = T)
+dbWriteTable(con, "usitc_industry_names", industry_names, append = T)
+dbWriteTable(con, "usitc_sector_names", sector_names, append = T)
 
 yrs <- min(trade$year):max(trade$year)
 
@@ -125,18 +186,18 @@ N <- 2000000
 
 trade <- trade %>%
   select(year, everything()) %>%
-  mutate(p = floor(row_number() / N) + 1) %>% 
-  group_by(p) %>% 
-  nest() %>% 
-  ungroup() %>% 
-  select(data) %>% 
+  mutate(p = floor(row_number() / N) + 1) %>%
+  group_by(p) %>%
+  nest() %>%
+  ungroup() %>%
+  select(data) %>%
   pull()
 
 map(
   seq_along(trade),
   function(x) {
     message(sprintf("Writing fragment %s of %s", x, length(trade)))
-    write_tsv(trade[[x]], sprintf("dev/fout/usitc_trade_part%s.tsv", ifelse(nchar(x) == 1, paste0("0", x), x)), na = "")
+    dbWriteTable(con, "usitc_trade", trade[[x]], append = T)
   }
 )
 
@@ -148,7 +209,7 @@ gc()
 csv_gravity <- list.files(finp, pattern = "release_2\\.1_[0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9]\\.csv", full.names = T)
 
 # yrs <- 1986:2019
-# country_names <- read_tsv("dev/fout/usitc_country_names.tsv")
+# country_names <- read_tsv("fout/usitc_country_names.tsv")
 
 gravity <- map_df(
   rev(csv_gravity),
@@ -334,26 +395,102 @@ gravity <- map_df(
   }
 )
 
-write_tsv(region_names, paste0(fout, "usitc_region_names.tsv"), na = "")
+DBI::dbSendQuery(con, "DROP TABLE IF EXISTS usitc_region_names")
 
-N <- 2000000
-
-gravity <- gravity %>%
-  ungroup() %>%
-  mutate(p = floor(row_number() / N) + 1) %>% 
-  group_by(p) %>% 
-  nest() %>% 
-  ungroup() %>% 
-  select(data) %>% 
-  pull()
-
-map(
-  seq_along(gravity),
-  function(x) {
-    message(sprintf("Writing fragment %s of %s", x, length(gravity)))
-    write_tsv(gravity[[x]], sprintf("dev/fout/usitc_gravity_part%s.tsv", ifelse(nchar(x) == 1, paste0("0", x), x)), na = "")
-  }
+DBI::dbSendQuery(
+  con,
+  "CREATE TABLE usitc_region_names (
+  	region_id INTEGER,
+  	region_name VARCHAR,
+  	CONSTRAINT usitc_region_names_PK PRIMARY KEY (region_id)
+    )"
 )
 
+DBI::dbSendQuery(con, "DROP TABLE IF EXISTS usitc_gravity")
+
+DBI::dbSendQuery(
+  con,
+  "CREATE TABLE usitc_gravity (
+    year INTEGER,
+    iso3_o CHAR(3),
+    dynamic_code_o VARCHAR(5),
+    iso3_d CHAR(3),
+    dynamic_code_d VARCHAR(5),
+    colony_of_destination_ever INTEGER,
+    colony_of_origin_ever INTEGER,
+    colony_ever INTEGER,
+    common_colonizer INTEGER,
+    common_legal_origin INTEGER,
+    contiguity INTEGER,
+    distance FLOAT8,
+    member_gatt_o INTEGER,
+    member_wto_o INTEGER,
+    member_eu_o INTEGER,
+    member_gatt_d INTEGER,
+    member_wto_d INTEGER,
+    member_eu_d INTEGER,
+    member_gatt_joint INTEGER,
+    member_wto_joint INTEGER,
+    member_eu_joint INTEGER,
+    lat_o FLOAT8,
+    lng_o FLOAT8,
+    lat_d FLOAT8,
+    lng_d FLOAT8,
+    landlocked_o INTEGER,
+    island_o INTEGER,
+    region_id_o INTEGER,
+    landlocked_d INTEGER,
+    island_d INTEGER,
+    region_id_d INTEGER,
+    agree_pta_goods INTEGER,
+    agree_pta_services INTEGER,
+    agree_fta INTEGER,
+    agree_eia INTEGER,
+    agree_cu INTEGER,
+    agree_psa INTEGER,
+    agree_fta_eia INTEGER,
+    agree_cu_eia INTEGER,
+    agree_pta INTEGER,
+    capital_const_d FLOAT8,
+    capital_const_o FLOAT8,
+    capital_cur_d FLOAT8,
+    capital_cur_o FLOAT8,
+    gdp_pwt_const_d FLOAT8,
+    gdp_pwt_const_o FLOAT8,
+    gdp_pwt_cur_d FLOAT8,
+    gdp_pwt_cur_o FLOAT8,
+    pop_d FLOAT8,
+    pop_o FLOAT8,
+    hostility_level_o INTEGER,
+    hostility_level_d INTEGER,
+    common_language INTEGER,
+    polity_o INTEGER,
+    polity_d INTEGER,
+    sanction_threat INTEGER,
+    sanction_threat_trade INTEGER,
+    sanction_imposition INTEGER,
+    sanction_imposition_trade INTEGER,
+    gdp_wdi_cur_o FLOAT8,
+    gdp_wdi_cap_cur_o FLOAT8,
+    gdp_wdi_const_o FLOAT8,
+    gdp_wdi_cap_const_o FLOAT8,
+    gdp_wdi_cur_d FLOAT8,
+    gdp_wdi_cap_cur_d FLOAT8,
+    gdp_wdi_const_d FLOAT8,
+    gdp_wdi_cap_const_d FLOAT8,
+    CONSTRAINT usitc_gravity_PK PRIMARY KEY (year, dynamic_code_o, dynamic_code_d),
+  	CONSTRAINT usitc_gravity_FK1 FOREIGN KEY (dynamic_code_o) REFERENCES usitc_country_names(country_dynamic_code),
+  	CONSTRAINT usitc_gravity_FK2 FOREIGN KEY (dynamic_code_d) REFERENCES usitc_country_names(country_dynamic_code),
+  	CONSTRAINT usitc_gravity_FK3 FOREIGN KEY (region_id_o) REFERENCES usitc_region_names(region_id),
+  	CONSTRAINT usitc_gravity_FK4 FOREIGN KEY (region_id_d) REFERENCES usitc_region_names(region_id)
+    )"
+)
+
+dbWriteTable(con, "usitc_region_names", region_names, append = T)
+dbWriteTable(con, "usitc_gravity", gravity, append = T)
+
 rm(gravity, region_names)
+
+dbDisconnect(con)
+
 gc()

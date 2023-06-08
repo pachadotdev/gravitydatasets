@@ -4,12 +4,11 @@ library(dplyr)
 library(tidyr)
 library(purrr)
 library(readr)
+library(RPostgres)
 
-finp <- "dev/finp/"
-fout <- "dev/fout/"
+finp <- "finp/"
 
 try(dir.create(finp, recursive = T))
-try(dir.create(fout, recursive = T))
 
 url <- "https://www.wto.org/english/res_e/reser_e/structural.gravity.manufacturing.database.Ver1.zip"
 zip <- gsub(".*/", finp, url)
@@ -18,7 +17,7 @@ if (!file.exists(zip)) {
   download.file(url, zip)
 }
 
-if (!file.exists("dev/finp/Structural.gravity.manufacturing.database.Ver1.dta")) {
+if (!file.exists("finp/Structural.gravity.manufacturing.database.Ver1.dta")) {
   archive_extract(url, dir = finp)
 }
 
@@ -29,7 +28,42 @@ trade <- read_dta(paste0(finp, "Structural.gravity.manufacturing.database.Ver1.d
     importer_iso3 = importer
   )
 
-usitc_country_names <- read_tsv("dev/fout/usitc_country_names.tsv") %>%
+con <- dbConnect(
+  Postgres(),
+  user = Sys.getenv("LOCAL_SQL_USR"),
+  password = Sys.getenv("LOCAL_SQL_PWD"),
+  dbname = "gravitydatasets",
+  host = "localhost"
+)
+
+DBI::dbSendQuery(con, "DROP TABLE IF EXISTS wto_country_names")
+
+DBI::dbSendQuery(
+  con,
+  "CREATE TABLE wto_country_names (
+    country_iso3 CHAR(3),
+    country_name VARCHAR(255),
+    CONSTRAINT wto_country_names_PK PRIMARY KEY (country_iso3)
+    )"
+)
+
+DBI::dbSendQuery(con, "DROP TABLE IF EXISTS wto_trade")
+
+DBI::dbSendQuery(
+  con,
+  "CREATE TABLE wto_trade (
+    pair_id INTEGER,
+    year INTEGER,
+    exporter_iso3 CHAR(3),
+    importer_iso3 CHAR(3),
+    trade FLOAT8,
+    CONSTRAINT wto_trade_FK1 FOREIGN KEY (exporter_iso3) REFERENCES wto_country_names(country_iso3),
+    CONSTRAINT wto_trade_FK2 FOREIGN KEY (importer_iso3) REFERENCES wto_country_names(country_iso3)
+    )"
+)
+
+usitc_country_names <- tbl(con, "usitc_country_names") %>%
+  collect() %>%
   select(country_iso3, country_name) %>%
   distinct()
 
@@ -71,25 +105,12 @@ country_names <- country_names %>%
 country_names <- country_names %>%
   filter(!country_name %in% c("West Germany", "Yemen, North", "Burma"))
 
-write_tsv(country_names, paste0(fout, "wto_country_names.tsv"), na = "")
+dbWriteTable(con, "wto_country_names", country_names, append = T)
 
-N <- 2000000
-
-trade <- trade %>%
-  mutate(p = floor(row_number() / N) + 1) %>% 
-  group_by(p) %>% 
-  nest() %>% 
-  ungroup() %>% 
-  select(data) %>% 
-  pull()
-
-map(
-  seq_along(trade),
-  function(x) {
-    message(sprintf("Writing fragment %s of %s", x, length(trade)))
-    write_tsv(trade[[x]], sprintf("dev/fout/wto_trade_part%s.tsv", ifelse(nchar(x) == 1, paste0("0", x), x)), na = "")
-  }
-)
+dbWriteTable(con, "wto_trade", trade, append = T)
 
 rm(trade, country_names)
+
+dbDisconnect(con)
+
 gc()

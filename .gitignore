@@ -3,4 +3,6 @@
 *.dta
 *.tsv
 *.zip
+*.sql
 .Rhistory
+^finp$
