@@ -126,8 +126,8 @@ Name: `cepii_gravity`
 
 Source: CEPII, adapted from the World Bank and other sources
 
-Format A table with 4,428,288 rows and 79 columns for the period
-1948-2019:
+Format: A table with 4,428,288 rows and 79 columns for the period 1948-2019:
+
 |variable               |description                                                                                 |
 |:----------------------|:-------------------------------------------------------------------------------------------|
 |year                   |Year                                                                                        |
