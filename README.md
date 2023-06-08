@@ -6,13 +6,26 @@ This repository aims at gathering in a single place a set of adapted variables t
 
 The tables provided here were reshaped under Cobb's Normal Form, and in some cases contain corrections that I explain below. The specific sources are the [Gravity database](http://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=8) from the Center for Prospective Studies and International Information (CEPII), the [International Trade and Production Database for Estimation (ITPD-E)](https://www.usitc.gov/data/gravity/itpde.htm) and the [Dynamic Gravity Database (DGD)](https://www.usitc.gov/data/gravity/dgd.htm) from the US International Trade Commission (USITC), and the [Structural Gravity Database (SGD)](https://www.wto.org/english/res_e/reser_e/structural_gravity_e.htm) from the World Trade Organization (WTO).
 
-This is a sub-product, and perhaps the biggest contribution I made during my MA thesis, "NAFTA is the Worst Trade Deal in the History of Trade Deals, Maybe Ever". Of course, that title took inspiration from a US president. I used the gravity model of trade to simulate the effects of NAFTA on the Canadian, American and Mexican economy (ordered from north to south) at sectoral level (i.e., Agriculture, Energy, Mining, etc.). I needed to correct some inconsistencies in the data, and I thought that it would be useful to share the results with the community.
+This is a sub-product, and perhaps the biggest contribution I made during my MA thesis, "NAFTA is the Worst Trade Deal in the History of Trade Deals, Maybe Ever". Of course, that title took inspiration from a US president. I used the gravity model of trade to simulate the effects of NAFTA on the Canadian, American and Mexican economy (ordered from north to south) at sectoral level (i.e., Agriculture, Mining and Energy, and Manufacturing). I needed to correct some inconsistencies in the data, and I thought that it would be useful to share the results with the community.
 
 ## Acknowledgments
 
 My MA thesis supervisor, [Dr. Victor Falkenheim](https://politics.utoronto.ca/faculty/profile/32/), was highly supportive and understood that, in order to conduct a reasonable General Equilibrium simulation of NAFTA effects by sectors, I had to care about the internal data consistency. I really thank him for his wise advice and support.
 
-I also had indirect but valuable inputs from [Dr. Mark Manger](https://munkschool.utoronto.ca/person/mark-manger) and [Leonardo Baccini](https://www.mcgill.ca/politicalscience/leonardo-baccini) when discussing the distributional consequences of free trade. Even when they didn't tell me to use SQL or fight with the data or Cobb's third formal norm, their emails demanded the need to reshape my datasets to be able to answer some questions coming from their end.
+I also had indirect but valuable inputs from [Dr. Mark Manger](https://munkschool.utoronto.ca/person/mark-manger) and [Dr. Leonardo Baccini](https://www.mcgill.ca/politicalscience/leonardo-baccini) when discussing the distributional consequences of free trade. Even when they didn't tell me to use SQL or fight with the data or Cobb's third formal norm, their emails demanded the need to reshape my datasets to be able to answer some questions coming from their end, such as "when a few industries concentrate trade gains and others experience losses in a positive overall result scenario, does the distribution of gains introduces a political justification to oppose trade at the expense of economic efficiency?"
+
+## Motivation
+
+The motivation to explore this topic follows from the observed change in US Republicans’ speech. Some
+clear examples can be obtained from what Republican presidents have said about trade in different decades:
+
+> “We should beware of the demagogues who are ready to declare a trade war against our friends —
+weakening our economy, our national security, and the entire free world— all while cynically
+waving the American flag.” Ronald Reagan, 40th president of the USA.
+
+> “. . . .I am a Tariff Man. When people or countries come in to raid the great wealth of our
+Nation, I want them to pay for the privilege of doing so. It will always be the best way to
+max out our economic power. We are right now taking in $billions in Tariffs. MAKE AMERICA RICH AGAIN” Donald J. Trump, 45th president of the USA. (https://twitter.com/realdonaldtrump/status/1069970500535902208)
 
 ## Sources
 
