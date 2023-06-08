@@ -1,5 +1,20 @@
 # Gravity Datasets
 
+## Contents
+
+- [About](https://github.com/pachadotdev/gravitydatasets#about)
+- [Acknowledgements](https://github.com/pachadotdev/gravitydatasets#acknowledgments)
+- [Motivation](https://github.com/pachadotdev/gravitydatasets#motivation)
+- [Sources](https://github.com/pachadotdev/gravitydatasets#sources)
+- [Tables](https://github.com/pachadotdev/gravitydatasets#tables)
+- [Differences with the original sources](https://github.com/pachadotdev/gravitydatasets#differences-with-the-original-sources)
+- [Usage](https://github.com/pachadotdev/gravitydatasets#usage)
+- [Installing the database locally](https://github.com/pachadotdev/gravitydatasets#installing-the-database-locally)
+- [Additional configurations](https://github.com/pachadotdev/gravitydatasets#additional-configurations)
+- [Contributing](https://github.com/pachadotdev/gravitydatasets#contributing)
+- [Collaborating](https://github.com/pachadotdev/gravitydatasets#collaborating)
+- [License](https://github.com/pachadotdev/gravitydatasets#license)
+
 ## About
 
 This repository aims at gathering in a single place a set of adapted variables that could be useful to researchers or practitioners that use the structural gravity model of trade. I provide trade flows, as well as geographic, cultural, trade facilitation and macroeconomic variables.
